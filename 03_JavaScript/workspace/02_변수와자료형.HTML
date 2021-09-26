@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02_변수와 자료형</title>
+</head>
+<body>
+    <h1>변수와 자료형</h1>
+    <h3>변수 선언과 대입</h3>
+    <script>
+        // 변수 선언
+        let str;
+        // 대입
+        str = '변수';
+        // alert로 출력
+        // alert(str);
+
+        // 선언과 대입 동시에
+        // 같은 이름의 변수 재 선언 불가
+        // let str = '변수';
+        let name = "이름";
+        console.log(name);
+    </script>
+
+    <h3>변수 명명 규칙</h3>
+    <ul>
+        <li>문자, 숫자, '$', '_' 사용 가능</li>
+        <li>첫 글자는 숫자가 될 수 없음</li>
+        <li>예약어 사용 불가</li>
+        <li>카멜 표기법 사용</li>
+    </ul>
+    <script>
+        // 유효한 변수명
+        let userName;
+        let number1;
+        let number_2;
+        let number$3;
+
+        // 유효하지 않은 변수명
+        // let 1number;
+        // let number#4;
+
+        // 유효하지만 권장하지 않음
+        let 변수 = '변수입니다';
+        console.log(변수);
+    </script>
+
+    <h3>상수 선언과 대입</h3>
+    <script>
+        // const는 재할당 할 수 없다
+        const PI = 3.141592;
+        // PI = 3.14;
+
+        // 선언 시 할당해야 함
+        // const NUM;
+        // NUM = 123;
+    </script>
+
+    <p>
+        ES5까지는 모든 변수를 var라는 예약어로 선언했으나
+        ES6 문법에서는 const, let을 사용<br>
+        ES5까지는 전역 범위와 함수 범위라는 두가지 유형의 범위만 있었지만
+        ES6에서는 블록 범위 변수(및 상수)를 제공함
+    </p>
+    <script>
+        // 선언 범위 테스트
+        var x = 1;
+        let y = 2;
+        console.log('블럭 밖 x = ' + x );
+        console.log('블럭 밖 y = ' + y );
+
+        {
+            var x = 3;
+            let y = 4;
+            console.log('블럭 안 x = ' + x );
+            console.log('블럭 안 y = ' + y );
+
+        }
+
+        console.log('블럭 밖 x = ' + x );
+        console.log('블럭 밖 y = ' + y );
+
+        // var는 블럭 범위를 가질 수 없고 let은 블록 범위를 가질 수 있다
+        // var는 블럭 내부의 변수를 다시 선언하면 블럭 외부의 변수도 다시 선언되는 문제가 있으나
+        // let은 블럭 내부의 변수를 다시 선언해도 블럭 외부의 변수는 다시 선언되지 않는다.
+
+        // loop 블럭 안의 변수로 사용했을 때
+        var i = 5;
+        for(var i = 0 ; i < 10; i++) {}
+        console.log("i = " + i);
+
+        let j = 5;
+        for(let j = 0; j < 10; j++) {}
+        console.log("j = " + j);
+
+    </script>
+
+    <h3>자바스트립트의 자료형</h3>
+    <P>
+        자바스크립트는 느슨한 타입(loosely typed) 언어,
+        혹은 동적(dynamic) 언어라고 함<br>
+        변수의 타입을 미리 선언할 필요가 없으며
+        타입은 프로그램이 처리되는 과정에서 자동으로 파악 됨<br>
+        같은 변수에 여러 타입의 값을 넣을 수 있다는 의미
+    </P>
+    <script>
+        // 숫자 : 정수 및 실수
+        let age = 20;
+        let height = 171.5;
+
+        // Infinity : 무한대
+        console.log(1/0);
+        console.log(Infinity);
+
+        // NaN : Not a Number
+        console.log('문자열'/2);
+        console.log(NaN);
+
+        // 문자열 : 따옴표로 묶음 (쌍따옴표, 홀따옴표 모두 가능)
+        // 문자 자료형은 따로 있음
+        let str2 = 'single';
+        let str3 = "double";
+        console.log(str2);
+        console.log(str3);
+
+        // 논리값
+        let bool = true;
+        let bool2 = 1 == 2;
+        console.log(bool);
+        console.log(bool2);
+
+        // null
+        // 존재하지 않는 값, 비어있는 값, 알 수 없는 값
+        let nullValue =null;
+        console.log(nullValue);
+
+        // undefined
+        // 값이 할당 되지 않은 상태
+        let undef;
+        console.log(undef);
+        // 명시적 undefined
+        let undef2 = undefined;
+        console.log(undef2);
+
+        // 객체
+        // 나머지는 원시(primitive) 자료형
+        let user = {name:'홍길동', age:20, id:'user01'};
+        console.log(user);
+        console.log(user.name);
+        console.log(user.age);
+        console.log(user.id);
+    </script>
+
+    
+</body>
+</html>

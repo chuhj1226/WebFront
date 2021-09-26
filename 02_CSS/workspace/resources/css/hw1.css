@@ -1,0 +1,63 @@
+#square-bullet {
+    list-style-type: square;
+}
+
+#sb1 {
+    font-family: 'Nanum Pen Script', cursive;
+}
+
+#sb2 {
+    font-size: 1.5em;
+}
+
+#sb3 {
+    font-style: italic;
+    font-weight: bold;
+}
+
+#sb4 {
+    font-size: 150%;
+}
+
+#zero-number {
+    list-style-type: decimal-leading-zero;
+}
+
+#space1 {
+    white-space: normal;
+    letter-spacing: 5px;
+}
+
+#space2 {
+    text-decoration: underline;
+}
+
+#space3 {
+    white-space: nowrap ;
+    letter-spacing: 5px;
+    
+}
+
+#space4 {
+    text-transform: uppercase;
+}
+
+#empty {
+    list-style-type:circle;
+}
+
+#em1 {
+    text-align: left;
+}
+
+#em2 {
+    text-align: right;
+}
+
+#em3 {
+    text-align: center;
+}
+
+#em4 {
+    line-height: 3em;
+}

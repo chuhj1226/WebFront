@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>18_폼 이벤트</title>
+    <style>
+        .invaild{
+            border-color: red;
+        }
+
+        [id$=result] {
+            color : red;
+        }
+
+        .focused {outline: 3px dotted lightgray; }
+    </style>
+</head>
+<body>
+    <h1>폼 이벤트</h1>
+    <p>
+        document.forms : 문서에 존재하는 form 들을 반환 받는 컬렉션<br>
+        Ex. document.forms.memberJoin : name 속성이 memberJoin인 문서 내 form<br>
+        Ex. document.forms[0] : 문서 내 가장 첫 번째 form<br>
+        form.elements : 해당 form 내의 name 속성이 일치하는 element들을 반환 <br>
+        Ex. form.userid : name 속성이 userid인 해당 form 내의 element
+    </p>
+    <h3>회원가입</h3>
+    <form name="memberJoin" method="post" action="">
+       <table>
+          <tr>
+             <td><label for="userid">아이디</label></td>
+             <td><input type="text" name="userid" id="userid" required></td>
+             <td><input type="button" value="중복확인"></td>
+          </tr>
+          <tr>
+             <td><label for="pwd1">비밀번호</label></td>
+             <td><input type="password" name="pwd1" id="pwd1" required></td>
+             <td><span id="pwdresult"></span></td>
+          </tr>
+          <tr>
+             <td><label for="pwd2">비밀번호확인</label></td>
+             <td><input type="password" name="pwd2" id="pwd2" required></td>
+             <td></td>
+          </tr>
+              <tr>
+                  <td>성별</td>
+                  <td>
+                      <input type="radio" name="gender" id="male" value="m"><label for="male">남자</label>
+                      <input type="radio" name="gender" id="female" value="f"><label for="female">여자</label>
+                  </td>
+                  <td></td>
+              </tr>
+              <tr>
+                  <td>나이</td>
+                  <td>
+                      <select id="age" name="age">
+                          <option value="10">10대 이하</option>
+                          <option value="20">20대</option>
+                          <option value="30">30대</option>
+                          <option value="40">40대</option>
+                          <option value="50">50대</option>
+                          <option value="60">60대 이상</option>
+                      </select>
+                  </td>
+                  <td></td>
+              </tr>
+              <tr>
+                  <td>자기소개</td>
+                  <td colspan="2"><textarea name="introduce" id="introduce" rows="5" cols="30" style="resize:none;"></textarea></td>
+              </tr>
+          <tr>
+             <td><label for="email">이메일</label></td> 
+             <td><input type="email" name="email" id="email" required></td>
+             <td><span id="emailresult"></span></td>
+          </tr>
+              <tr>
+                  <td></td>
+                  <td>
+                      <input type="reset" value="초기화">
+                      <input type="submit" value="회원가입">
+                      <input type="image" value="회원가입">
+                  </td>
+                  <td></td>
+              </tr>
+       </table>
+    </form>
+
+    <script>
+        // 폼 얻기
+        console.log(document.forms.memberJoin); // 이름이 memberJoin인 form
+        console.log(document.forms[0]);         // 문서 내의 첫 번째 form
+        // 요소 얻기
+        let form = document.forms.memberJoin;
+        console.log(form.elements);
+        console.log(form.userid);               // form 내부 요소 중 이름이 userid인 요소
+        console.log(form.gender);               // form 내부 요소 중 이름이 gender인 요소
+        console.log(form.gender[0]);            // 인덱스로 참조
+        console.log(form.gender[1]);
+        // 역참조 가능
+        let email = form.email;                 // 폼 -> 요소
+        let userid = form.userid;
+        console.log(email.form);                // 요소 -> 폼
+        console.log(userid.form);
+        console.log("=========================================")
+    </script>
+
+    <h3>폼 요소 값 다루기</h3>
+    <p>
+        input, textarea : input, value 또는 input, checked (checkbox 또는 radio)<br>
+        select.option : option 하위 요소를 담고 있는 컬렉션<br>
+        select.value : 현재 선택 된 option 값<br>
+        select.selectedIndex : 현재 선택 된 option의 번호(인덱스)
+    </p>
+    <button id="test1">input text</button>
+    <button id="test2">input radio</button>
+    <button id="test3">textarea</button>
+    <button id="test4">select</button>
+    <script>
+        document.querySelector("#test1").addEventListener('click',() => {
+            console.log('userid.value : ' + userid.value);
+            email.value = 'email@email.com';
+        });
+
+        document.querySelector("#test2").addEventListener('click',()=> {
+            console.log('male.checked : ' + male.checked);
+            female.checked = true;
+        });
+        
+        document.querySelector('#test3').addEventListener('click',()=>{
+            console.log('introduce.innerHTML : '+introduce.innerHTML);
+            console.log('introduce.value : '+introduce.value);
+            introduce.value = '아이엠그라운드~자기소개하기~';
+        });
+
+        document.querySelector("#test4").addEventListener('click',()=>{
+            // 아래 세가지 코드의 실행 결과는 모두 같음
+            age.options[2].selected = true;
+            age.selectedIndex = 2;
+            age.value = '30';
+            console.log('age.options[2].selected : '+age.options[2].selected);
+            console.log('age.selectedIndex : '+age.selectedIndex);
+            console.log('age.value : '+age.value);
+        });
+    </script>
+
+    <h3>focus, blur 이벤트</h3>
+    <p>
+        focus : 사용자가 폼 요소를 클릭하거나 tap 키를 눌러 요소로 이동했을 때 <br>
+        autofocus 라는 HTML 속성을 사용해도 요소를 포커스 할 수 있으며 이는 페이지가 로드 된 후
+        자동으로 포커싱<br>
+        blur : 사용자가 다른 곳을 클릭하거나 tab 키를 눌러 다음 폼 요소로 이동했을 때<br>
+        또한 focus, blur 메소드 요소에 포커스르 주거나 제거할 수 있음
+    </p>
+
+    <button id="test5">userid focus</button>
+    <button id="test6">userid blur</button>
+    <script>
+        email.onblur = function(){
+            // @ 유무를 이용해 유효한 이메일 주소인지 체크
+            if(!this.value.includes('@')){
+                this.classList.add('invaild')
+                emailresult.innerHTML = '올바른 이메일 주소를 입력해주세요';
+            }
+        };
+        email.onfocus = function(){
+            // invaild 클래스 값이 적용되어 있다면 리셋
+            if(this.classList.contains('invaild')){
+                this.classList.remove('invaild');
+                emailresult.innerHTML = '';
+            }
+        };
+
+        test5.addEventListener('click',()=> userid.focus());
+        test6.addEventListener('click',()=> userid.blur());
+    </script>
+
+    <h3>focusin, focusout 이벤트</h3>
+    <p>
+        focus 이벤트는 해당 입력 필드에서만 동작하고 버블링 되지 않음<br>
+        focusin, focusout은 버블링 적용 됨
+    </p>
+    <script>
+        // 1. 폼 안에 포커스가 된 경우 클래스 추가
+        // 버블링이 되지 않기 때문
+        // form.onfocus = () => form.className = 'focused';
+        // 2. focusin과 focusout을 이용
+        form.addEventListener('focusin', ()=> form.classList.add('focused'));
+        form.addEventListener('focusout',() => form.classList.remove('focused'));
+    </script>
+
+    <h3>change 이벤트</h3>
+    <p>
+        change : 요소 변경이 끝나면 발생<br>
+        텍스트 입력 요소인 경우에는 요소 변경이 끝날 때가 아니라
+        포커스를 잃을 때 이벤트가 발생<br>
+        select/checkbox/radio는 선택 값이 변경 된 직후 발생
+    </p>
+    <script>
+        form.introduce.addEventListener('change',() => alert('introduce change!'));
+        form.age.addEventListener('change',() => alert('age change!'));
+    </script>
+
+    <h3>input 이벤트</h3>
+    <p>
+        input : 키보드 이벤트와 달리 어떤 방법으로든 값을 변경할 때 발생<br>
+        Ex. 마우스를 사용하여 글자를 붙여넣거나 음성 인식 기능을 사용하여 글자를 입력할 때
+    </p>
+    <script>
+        pwd1.addEventListener('input',checkPwd);
+
+        pwd2.addEventListener('input',checkPwd);
+
+        function checkPwd(){
+            if(pwd1.value != pwd2.value){
+                pwd1.classList.add('invaild');
+                pwd2.classList.add('invaild');
+                pwdresult.innerHTML = '비밀번호가 일치하지 않습니다.';
+            }else{
+                pwd1.classList.remove('invaild');
+                pwd2.classList.remove('invaild');
+                pwdresult.innerHTML = '';
+            }
+            
+        }
+    </script>
+    <h3>submit 이벤트</h3>
+    <p>
+        submit : 폼을 제출 시 <br>
+        폼을 서버로 전송하기 전 내용을 검증하여 폼 전송을 취소할 때 사용<br>
+        폼을 전송하는 방법<br>
+        (1) input type="submit" 또는 input type="image" 클릭<br>
+        (2) input 필드에서 enter 키 누르기<br>
+
+        form.submit() 메소드는 자바 스크립트만으로 폼 전송을 하고자<br>
+        동적으로 폼을 생성하고 서버에 보낼 수 있음<br>
+        단, 이때는 submit 이벤트가 생성되지는 않음
+    </p>
+    <button id="search">네이버 검색하기</button>
+    <script>
+        search.addEventListener('click',()=>{
+            let keyword = prompt('검색어를 입력해주세요');
+            if(keyword){
+                let newForm = document.createElement('form');
+                newForm.action = 'https://search.naver.com/search.naver';
+                newForm.method = 'GET';
+                newForm.innerHTML = '<input name="query" value="'+keyword+'">';
+                // 폼을 제출하려면 반드시 폼이 문서 안에 있어야 함
+                document.body.append(newForm);
+                newForm.submit();
+            }else{
+                alert('검색어를 입력하지 않으셨습니다.');
+            }
+        })
+    </script>
+</body>
+</html>

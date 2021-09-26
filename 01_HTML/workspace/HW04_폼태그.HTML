@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW04</title>
+</head>
+<body>
+    <h1>회원가입</h1>
+    <fieldset>
+
+            <fieldset>
+                <legend>필수 입력사항</legend>
+                <table>
+                        <tr>
+                            <th>ID</th>
+                            <td><input type="text" placeholder="아이디 10글자 이내">
+                                <input type="button" value="중복 확인"></td>
+                        </tr>
+                        <tr>
+                            <th>비밀번호</th>
+                            <td><input type="text" size="30" placeholder="영문,숫자,특수문자 포함 8자 이상">
+                                </input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>비밀번호 확인</th>
+                            <td><input type="text" size="30"></td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td><input type="text" >
+                            <select>
+                                <option value="naver.com">naver.com</option>
+                                <option value="daum.com">daum.com</option>
+                                <option value="기타" selected>직접입력</option>
+                            </select></td>
+                        </tr>
+                </table>
+            </fieldset>
+            <fieldset>
+                <legend>추가 정보</legend>
+                <p>프로필 사진<input type="file" value="파일 선택"></p>
+                <p>성별 : <input type="radio" id="male" name="gender" value="M" checked>
+                    <label for="male">남자</label>&nbsp;
+                    <input type="radio" id="female" name="gender" value="F" >
+                    <label for="female">여자</label></p>
+                <p>생년월일 :
+                    <input type="date" name="dateIn"></p>
+                <p>취미<br>
+                    <input type="checkbox" id="baseball" name="hobby" value="baseball">
+                    <label for="baseball">야구</label>&nbsp;
+                    <input type="checkbox" id="basketball" name="hobby" value="basketball">
+                    <label for="basketball">농구</label>&nbsp;
+                    <input type="checkbox" id="football" name="hobby" value="football">
+                    <label for="football">축구</label>&nbsp;<br>
+                    <input type="checkbox" id="football" name="hobby" value="football" checked>
+                    <label for="football">공부</label>&nbsp;
+                    <input type="checkbox" id="football" name="hobby" value="football" >
+                    <label for="football">음악감상</label>&nbsp;<br>
+                    <input type="checkbox" id="football" name="hobby" value="football">
+                    <label for="football">기타 : </label>
+                    <input type="text">
+                </p>
+                <label>자기소개</label><br>
+                <textarea cols="40" rows="5" name="content" style="resize: none;"> </textarea></li>
+
+            </fieldset>
+
+            <br>&nbsp;&nbsp;<input type="submit" value="회원가입">
+            <input type="reset" value="다시입력">
+            <input type="button" value="이전으로">
+            
+    </fieldset>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10_DOM</title>
+</head><body>
+    <h1>DOM(Document Object Model)</h1>
+    <p>
+        HTML에 있는 태그를 객체화하여 자바스크립트에서 다룰 수 있게 한 것<br>
+        모든 노드 객체에 접근할 수 있는 요소와 메소드 제공<br>
+        HTML에 있는 태그를 구조화(트리) 하였을 때 각각의 태그가 노드<br>
+        - 요소 노드(Elements Node) : 태그 그 자체 의미<br>
+        - 텍스트 노드(Text Node) : 태그에 기록되어있는 문자<br>
+        * 텍스트 노드를 가지는 태그(h?, p등)와 가지지 않는 태그(img 등)가 있음
+    </p>
+
+    <h1>DOM 탐색하기</h1>
+    <h3>documentElements, head, body</h3>
+    <script>
+        function test1() {
+            console.log("----- HTML -----")
+            console.log(document.documentElement);
+            console.log("----- HEAD -----")
+            console.log(document.head);
+            console.log("----- BODY -----");
+            console.log(document.body);
+
+        }
+        // test1();
+    </script>
+
+    <h3>자식 노드 탐색 : childNodes, firstChild, lastChild</h3>
+    <p>
+        자식 노드(child node, children)는 바로 아래의 자식 요소를 나타냄<br>
+        후손 노드(descendants)는 중첩 관계에 있는 모든 요소를 나타냄
+    </p><ul><li><a href="#">링크1</a></li>
+        <li><a href="#">링크2</a></li>
+        <li><a href="#">링크3</a></li></ul>
+    <script>
+        function test2(){
+            console.log("----- body의 자식 노드들(childNodes) -----");
+            console.log(document.body.childNodes);
+            console.log("===============================");
+            for(let i = 0; i<document.body.childNodes.length; i++){
+                console.log(document.body.childNodes[i]);
+            }
+            console.log("===============================");
+            // ul 태그의 인덱스 찾아서 자식 출력해보기
+            console.log(document.body.childNodes[14].childNodes);
+            console.log(document.body.childNodes[14].firstChild);
+            console.log(document.body.childNodes[14].lastChild);
+        }
+        // test2();
+    </script>
+
+
+    <h3>DOM 컬렉션</h3>
+    <p>
+        NodeList는 마치 배열 같아 보이지만 배열이 아닌 반복 가능한 유사 배열 객체인 컬렉션<br>
+        for of 반복문은 사용가능하지만 배열 메소드는 쓸 수 없음<br>
+        DOM 컬렉션은 읽는 것만 가능하며 childNodes[i] = 값; 을 이용해서 자식 노드를 교체하는 것이
+        불가능함<br>
+        자식 노드 변경을 위해서는 별도의 메소드가 필요함
+    </p>
+
+    <h3>형제 노드 탐색: nextSibling, previousSiblign</h3>
+    <p>
+        nextSibling : 다음 형제 노드에 대한 정보<br>
+        previousSiblign : 이전 형제 노드에 대한 정보
+    </p>
+    <h3>부모 노드 탐색 : parentNode</h3>
+    <script>
+        function test3() {
+            // head / body 태그의 부모는 html
+            console.log(document.head.parentNode);
+            console.log(document.body.parentNode);
+            // head / body 개행 없을 시 서로가 앞/뒤 형제
+            console.log(document.head.nextSibling);
+            console.log(document.body.previousSibling);
+        }
+        // test3();
+    </script>
+
+    <h1>요소 간 이동</h1>
+    <h3>부모 요소 : parentElement
+        자식 요소 : children, firstElementChild, lastElementChild<br>
+        형제 요소 : nextElementSibling, previousElementSibling
+    </h3>
+
+    <p>
+        탐색 관련 프로퍼티는 모든 종류의 노드(텍스트, 요소, 주석)를 참조하지만
+        대부분은 요소 노드를 조작하는 작업이므로 요소 노드만 탐색하는 속성이 필요함
+    </p>
+
+    <script>
+        function test4() {
+            for(let elem of document.body.children){
+                console.log(elem);
+            }
+            console.log("----------------------------------");
+            console.log(document.body.children[7].firstElementChild);
+            console.log(document.body.children[7].lastElementChild);
+            console.log(document.body.children[7].nextElementSibling);
+            console.log(document.body.children[7].previousElementSibling);
+            console.log(document.body.children[7].parentElement);
+        }
+
+        test4();
+    </script>
+
+
+</body>
+</html>

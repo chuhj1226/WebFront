@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW03</title>
+</head>
+<body>
+    <form>
+        <fieldset>
+            <legend>납품자 정보</legend>
+            <ol>
+                <li><label>납품자명 : </label>
+                    <input type="text" name="input1"></li><br>
+                <li><label>email : </label>
+                    <input type="email" name="input2" placeholder="answer@naver.com"></li><br>
+                <li><label>홈페이지 : </label>
+                    <input type="url" name="input3" placeholder="https://"></li><br>
+                <li><label>지역 : </label>
+                    <select name="nationality">
+                        <option value="se">서울</option>
+                        <option value="bu">부산</option>
+                        <option value="de">대구</option>
+                        <option value="in" selected>인천</option>
+                    </select></li>
+            </ol>
+        </fieldset>
+        <fieldset>
+            <legend>납품 정보</legend>
+            <ul>
+                <li><label>상품명 : </label>
+                    <input type="text"></li><br>
+                <li><label>납품수량 : </label>
+                    <input type="text"  placeholder="최소100"></li><br>
+                <li><label>납품등급 : </label>
+                    <input type="range" name="point" min="0" max="100" value="50" step="10"></li>
+                <li><label>기타사항 : </label>
+                    <textarea cols="20" rows="2" name="content"> </textarea></li>
+            </ul>
+        </fieldset>
+        <br>
+        <input type="button" value="send message">
+    </form>
+</body>
+</html>

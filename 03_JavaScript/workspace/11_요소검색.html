@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11_요소 검색</title>
+    <style>
+        .area {
+            width: 500px;
+            height: 200px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>원하는 요소 노드에 접근하기</h1>
+
+    <h3>document.getElementById</h3>
+    <p>
+        요소에  id 속성이 있으면 위치에 상관 없이
+        (부모, 자식, 형제 등의 상대적 위치와 관계 없이)
+        document.getElementById(id) 메소드를 통해 접근할 수 있음<br>
+        id 속성 값을 그대로 딴 전역 변수를 이용한 접근도 가능하지만
+        해당 id와 동일한 변수가 생기는 이름 충돌 가능성이 있어
+        지양하는 것이 좋음<br>
+
+    </p>
+    <div id="area1" class="area">
+        div 영역
+        <p id="area2">p태그 영역</p>
+    </div>
+    <div id="area1" class="area">div 영역</div>
+    <script>
+        // 요소 접근
+        let elem = document.getElementById('area1');
+        // 색상 변경
+        elem.style.background = 'skyblue';
+        let area2 = 10;
+        // area2.style.background = 'blue';
+
+    </script>
+
+    <div id="area3" class="area"></div>
+    <button onclick="accessId();">클릭마다 색 변경</button>
+    <script>
+        function accessId(){
+            let area3 = document.getElementById('area3');
+            let bgColor = area3.style.backgroundColor;
+            console.log(bgColor);
+            if(bgColor == 'red'){
+                area3.style.backgroundColor = 'yellow';
+            }else{
+                area3.style.backgroundColor = 'red';
+            }
+
+        }
+    </script>
+
+    <h3>querySelector</h3>
+    <p>
+        document.querySelector('선택자') : 제공한 선택자와 일치하는 문서 내 첫번째 Element를 반환함<br>
+        document.querySelectorAll('선택자') : 제공한 선택자와 일치하는 문서 내 모든 Element
+    </p>
+    <div class="test">
+        <h1>first</h1>
+    </div>
+    <div class="test">
+        <h1>second</h1>
+    </div>
+    <script>
+        let myDiv = document.querySelector('.test');
+        console.log(myDiv);
+        let myDivs = document.querySelectorAll('.test');
+        console.log(myDivs);
+        myDivs[0].style.color = 'red';
+        myDivs[1].style.color = 'green';
+    </script>
+    <p>
+        element.querySelctor('선택자') : 제공한 선택자와 일치하는 element 내 첫번째 요소 반환<br>
+        element.querySelectorAll('선택자') : 제공한 선택자와 일치하는 element 내 모든 요소 반환
+    </p>
+    <div class="first">
+        <div class="second">
+            <ul>
+                <li>test1</li>
+                <li>test2</li>
+                <li>test3</li>
+                <li>test4</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        let first = document.querySelector('.first');
+        let myLi = first.querySelector('.second li:nth-child(3)');
+        let myLis = first.querySelectorAll("li");
+        console.log(myLi);
+        console.log(myLis);
+        myLi.style.color = 'red';
+        myLis[0].style.backgroundColor = 'gray';
+
+    </script>
+
+    <h1>closest</h1>
+    <p>
+        element.closest('선택자') : element 자기 자신을 포함하여
+        제공한 선택자와 일치하는 가장 가까운 조상 요소를 반환함
+    </p>
+    <div class="area">
+        <ul class="korean-food">
+            <li class="menu">불고기백반</li>
+            <li class="menu">된장찌개</li>
+            <li class="menu">김치찌개</li>
+        </ul>
+    </div>
+    <script>
+        let menu = document.querySelector('.menu'); // li
+        console.log(menu.closest('.korean-food'));  // ul
+        console.log(menu.closest('.area'));         //div
+        console.log(menu.closest('h3'));            // h3은 li의 조상요소가 아니므로 null
+    </script>
+    
+    <h3>matches</h3>
+    <p>
+        element.matches('선택자') : element가 선택자와 일치하는지 여부 반환<br>
+        요소가 담겨있는 배열 등을 순회해 원하는 요소만 걸러내고자 할 때 사용
+    </p>
+    <script>
+        for(let elem of document.body.children) {
+            if(elem.matches('.area')){
+                console.log(elem);
+            }
+        }
+    </script>
+
+    <h3>getElementByTagName(tag),
+        getElementByClassName(className),
+        getElementByName(name)
+    </h3>
+    <p>
+        태그나 클래스 등을 이용해 원하는 노드를 찾아주는 메소드<br>
+        element.getElementsByTagName('태그명')
+        : 주어진 태그에 해당하는 요소들의 컬렉션 반환<br>
+        element.getElementsByClassName('클래스명')
+        : 주어진 클래스 속성 값에 해당하는 요소들의 컬렉션을 반환<br>
+        document.getElementsByName('name명')
+        : 아주 드물게 쓰이는 메소드로 문서 전체를 대상으로 검색을 수행<br>
+        검색 기준은 name 속성 값이고 검색 결과를 담은 컬렉션을 반환
+    </p>
+
+    <h3>태그명으로 접근</h3>
+    <ol>
+        <li><a href="$">목록1</a></li>
+        <li><a href="$">목록2</a></li>
+        <li><a href="$">목록3</a></li>
+        <li><a href="$">목록4</a></li>
+        <li><a href="$">목록5</a></li>
+    </ol>
+    <button onclick="accessTagName();">태그명으로 접근</button>
+    <script>
+        function accessTagName(){
+            let links = document.getElementsByTagName('a');
+            console.log('전달 받은 a 태그의 개수'+links.length);
+
+            let changeColor = 50;
+            for(let i = 0 ; i < links.length ; i++){
+                links[i].style.backgroundColor = 'rgb(130,220,'+changeColor+")";
+                changeColor += 50;
+            }
+        }
+    </script>
+
+    <h3>class로 접근</h3>
+    <script>
+        console.log(document.getElementsByClassName('area'));
+    </script>
+
+    <h3>name으로 접근</h3>
+    <form>
+        <fieldset>
+            <legend>취미</legend>
+            <table>
+                <tr>
+                    <td>
+                        <input type="checkbox" name="hobby" value="game" id="game">
+                        <label for="game">game</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" name="hobby" value="music" id="music">
+                        <label for="music">music</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" name="hobby" value="movie" id="movie">
+                        <label for="movie">movie</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" name="hobby" value="book" id="book">
+                        <label for="book">book</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" name="hobby" value="exercise" id="exercise">
+                        <label for="exercise">exercise</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" name="hobby" value="etc" id="etc">
+                        <label for="etc">etc</label>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+    <button onclick="accessName();">name으로 접근</button>
+    <script>
+        function accessName(){
+            let hobby = document.getElementsByName('hobby');
+            let checkedItems = '';
+            for(let hb of hobby){
+                if(hb.checked){ // 체크 박스가 체크되어 있다면 true 리턴
+                    checkedItems += hb.value + " 선택함\n";
+                }
+            }
+            alert(checkedItems);
+        }
+    </script>
+</body>
+</html>

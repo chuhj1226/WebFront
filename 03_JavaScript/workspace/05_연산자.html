@@ -1,0 +1,84 @@
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05_연산자</title>
+</head>
+<body>
+    <h1>연산자</h1>
+    <p>
+        기본적인 연산자의 사용과 우선 순위 등은 Java와 크게 다르지 않으므로
+        차이가 있는 부분에 대해서만 확인
+    </p>
+
+    <h3>비교 연산자를 통한 문자열 비교</h3>
+    <p>
+        비교 연산자 (크다, 작다, 작거나 같다, 크거나 같다)로
+        문자열을 비교할 수 있음<br>
+        사전 순(유니코드 순)으로 뒤쪽 문자열은 앞쪽의 문자열보다 크다
+    </p>
+    
+    <script>
+        console.log('===== 문자열 비교 연산자 사용 =====');
+        console.log("'hello' == 'hello' : " + ('hello' == 'hello'));
+        console.log("'hello' != 'hello' : " + ('hello' != 'hello'));
+        console.log("'apple' < 'banana' : " + ('apple' < 'banana'));
+        console.log("'apple' > 'banana' : " + ('apple' > 'banana'));
+        console.log("'cat' <= 'Zoo' : " + ('cat' <= 'Zoo'));
+        console.log("'cat' >= 'Zoo' : " + ('cat' >= 'Zoo'));
+    </script>
+
+    <h3>==, != 연산자와 ===, !== 연산자</h3>
+
+    <h4>동등 연산자(==, !=)</h4>
+    <p>자료형에 상관 없이 값이 일치하면 true, 아니면 false</p>
+
+    <h4>일치 연산자(===, !==)</h4>
+    <p>자료형과 값이 모두 일치하면 ture, 아니면 false</p>
+
+    <script>
+        console.log("===== 동등/일치 연산자 테스트 =====");
+        // 동등 => 비교하려는 자료형이 다르면 숫자형으로 변경하여 비교함
+        console.log('1 == "1" : ' + (1 == "1"));
+        console.log('1 == true : ' + (1 == true));
+        console.log('1 == "true" : ' + (1 == "true"));
+        // 일치 => 형변환 없이 값 비교
+        console.log('1 === "1" : ' + (1 === "1"));
+        console.log('1 === true : ' + (1 === true));
+        console.log('1 === "true" : ' + (1 === "true"));
+
+        // 동등
+        console.log('0 == "0" : '+(0 == "0"));
+        console.log('0 == "" : '+(0 == ""));
+        console.log('"0" == "" : ' + ("0"==""));
+        console.log('null == undefined : '+ (null == undefined));
+
+        // 일치
+        console.log('0 === "0" : '+(0 === "0"));
+        console.log('0 === "" : '+(0 === ""));
+        console.log('"0" === "" : ' + ("0"===""));
+        console.log('null === undefined : '+ (null === undefined));
+
+    </script>
+
+    <p>
+        그 외 삼항 연산자, 조건문(if문, if-else문, if-else if문, switch문).
+        반복문(for문, while문, do-while문) 등의 사용 방법 모두 Java와 동일함
+    </p>
+
+    <h3>논리 연산자를 이용한 짧은 조건문</h3>
+    <script>
+        let input = prompt('숫자를 입력하시오');
+        // 입력 받은 값이 홀수인지 짝수인지 alert 출력
+        // if문 아닌 &&, || 를 이용
+        input % 2 == 0 || alert("홀수입니다.");
+        input % 2 == 0 && alert("짝수입니다.");
+        
+    </script>
+</body>
+</html>

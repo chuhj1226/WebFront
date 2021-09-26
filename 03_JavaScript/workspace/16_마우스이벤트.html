@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>16_마우스 이벤트</title>
+    <style>
+        .area{
+            background: lightgray;
+            border:  1px solid black;
+            min-height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h1>마우스 이벤트</h1>
+    <h3>마우스 이벤트 종류</h3>
+    <ul>
+        <li>
+            mousedown/mouseup
+            : 요소 위에서 마우스 버튼을 누를 때, 마우스 버튼 누르고 있다가 뗄 때
+        </li>
+        <li>
+            mouseover/mouseout
+            : 마우스 커서가 요소 바깥에 있다가 요소 안으로 움직일 때,
+            마우스 커서가 요소 위에 있다가 요소 밖으로 움직일 때
+        </li>
+        <li>
+            mousemove : 마우스를 움직일 때
+        </li>
+        <li>
+            click
+            : 동일한 요소 위에서 mousedown 이벤트와 mouseup 이벤트를 연달아 발생 시킬 때
+        </li>
+        <li>
+            dblclick
+            : 동일한 요소 위에서 마우스 왼쪽 버튼으로 빠르게 클릭할 때
+        </li>
+        <li>
+            contextmenu : 마우스 오른쪽 버튼 눌렀을 때
+        </li>
+    </ul>
+
+    <h3>마우스 이벤트 테스트</h3>
+    <button id="btn1">마우스 왼쪽이나 오른쪽 버튼을 사용해 클릭</button>
+    <div id="area1" class="area"></div>
+    <script>
+        let btn1 = document.querySelector("#btn1");
+        let area1 = document.querySelector("#area1");
+
+        // event.button
+        // 0 : 왼쪽, 1: 가운데, 2: 오른쪽
+
+        btn1.onmousedown = function () {
+            area1.insertAdjacentHTML('beforeend', 'mousedown button=' + event.button + '<br>');
+        };
+        btn1.onmouseup = function () {
+            area1.insertAdjacentHTML('beforeend', 'mouseup button=' + event.button + '<br>');
+        };
+        btn1.onclick = function () {
+            area1.insertAdjacentHTML('beforeend', 'click button=' + event.button + '<br>');
+        };
+        btn1.oncontextmenu = function () {
+            area1.insertAdjacentHTML('beforeend', 'contextmenu button=' + event.button + '<br>');
+        };
+        btn1.ondbclick = function () {
+            area1.insertAdjacentHTML('beforeend', 'dbclick button=' + event.button + '<br>');
+        };
+    </script>
+
+    <h3>마우스 이벤트 좌표</h3>
+    <p>
+        클라이언트 좌표(clientX, clientY)
+        : 웹 문서를 기준으로 각각 왼쪽에서 얼마나 떨어져 있는지,
+        위에서 얼마나 떨어져 있는지
+    </p>
+
+    <span>클라이언트 좌표</span>
+    <span id="span1">마우스를 위에 올려보세요</span>
+    <script>
+        let span1 = document.querySelector("#span1");
+        span1.onmouseover = function(){
+            span1.innerHTML = event.clientX + " : " + event.clientY;
+        }
+    </script>
+
+    <h3>선택 막기, 복사 막기</h3>
+    <p>
+        글씨 선택 막기
+        : mousedown 이벤트가 발생할 때 나타나는 브라우저 기본 동작을 막기<br>
+        글씨 복사 막기
+        : oncopy 이벤트 기본 동작 막기
+    </p>
+    <span onmousedown="return false;" ondblclick="alert('클릭 되었습니다');">
+        이 영역은 더블 클릭해도 선택되지 않도록 합니다
+    </span>
+    <div oncopy="alert('복사 불가입니다!'); return false;">
+        이 편지는 영국에서 최초로 시작되어 일년에 한 바퀴 돌면서 받는 사람에게 행운을 주었고
+        지금은 당신에게로 옮겨진 이 편지는 4일 안에 당신 곁을 떠나야 합니다.
+        이 편지를 포함해서 7통을 행운이 필요한 사람에게 보내주셔야 합니다. 복사는 안됩니다.
+    </div>
+</body>
+</html>

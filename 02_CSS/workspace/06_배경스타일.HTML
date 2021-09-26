@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>06_배경 스타일</title>
+    <style>
+        /* body 태그에 배경색 적용 */
+
+        body {
+            /* 색상명 */
+            background-color: pink;
+            /* rgb */
+            background-color: rgb(255, 192, 203);
+            /* rgba */
+            background-color: rgb(255, 192, 203, 0.5);
+            /* hsl */
+            background-color: hsl(350, 100%, 88%);
+            /* hsla */
+            background-color: hsl(350, 100%, 88%, 0.5);
+            /* hex code (16진수) */
+            background-color: #ffc0cb;
+        }
+
+        #div-bg {
+            width: 50%;
+            background-color: white;
+        }
+
+        .div-test {
+            background-color: white;
+            /* 외부 여백 */
+            margin : 30px;
+            /* 내부 여백 */
+            padding: 20px;
+            /* 테두리 선 점선으로 */
+            border : 5px dashed black;
+        }
+
+        /* background-clip 속성 */
+        #div1 { background-clip: border-box;}
+        #div2 { background-clip: padding-box;}
+        #div3 { background-clip: content-box;}
+
+        #bg-img{
+            height: 800px;
+            border: 1px solid black;
+            background-image: url('resources/image/bgsample.PNG');
+
+            /* background-repeat 속성 : 배경 이미지의 반복 방법 지정 */
+
+            /* 반복 (기본) */
+            background-repeat: repeat;
+            /* 가로로만 반복 */
+            background-repeat: repeat-x;
+            /* 세로로만 반복 */
+            background-repeat: repeat-y;
+            /* 반복 없음 */
+            background-repeat: no-repeat;
+
+            /* background-size 속성 : 크기 조정 */
+
+            /* 원래 크기  */
+            background-size: auto;
+
+            /* 요소 안에 배경 이미지가 다 들어오도록 이미지를 확대/축소 */
+            background-size: contain;
+
+            /* 배경 이미지로 요소를 모두 덮을 수 있도록 이미지를 확대/축소 */
+            background-size: cover;
+
+            /* 고정 크기 지정 */
+            background-size: 150px 100px;
+
+            /* 상대 크기 지정 */
+            background-size: 80% 80%;
+
+            /* background-position 속성 : 위치 설정 */
+            background-position: left top;
+            background-position: right top;
+            background-position: center top;
+            background-position: left bottom;
+            background-position: right bottom;
+            background-position: center bottom;
+            background-position: left center;
+            background-position: right center;
+            background-position: center center;
+
+            /* 스크롤 여부 */
+            background-attachment: scroll;
+            background-attachment: fixed;
+
+        }
+    </style>
+</head>
+<body>
+    <h1>배경색과 배경 이미지</h1>
+    <pre> body { background-color : 색상명 | rgb | rgba | hsl | 16진수; } 로 배경색을 지정할 수 있다</pre>
+
+    <hr>
+
+    <h3>div 배경 테스트</h3>
+    <pre> div 영역을 설정하는 경우 배경색을 지정하기 위해서는 div에 배경색을 별도로 지정해야 한다.</pre>
+    <div id="div-bg">모든 국민은 고문을 받지 아니하며, 형사상 자기에게 불리한 진술을 강요당하지 아니한다. 공개하지 아니한 회의내용의 공표에 관하여는 법률이 정하는 바에 의한다.
+    명령·규칙 또는 처분이 헌법이나 법률에 위반되는 여부가 재판의 전제가 된 경우에는 대법원은 이를 최종적으로 심사할 권한을 가진다. 국가는 농수산물의 수급균형과 유통구조의 개선에 노력하여 가격안정을 도모함으로써 농·어민의 이익을 보호한다.</div>
+
+    <h3>배경 적용 범위 조정</h3>
+    <pre> div 영역의 배경 적용 범위를 지정할 때 background-clip 속성을 사용한다</pre>
+    <div class="div-test" id="div1">모든 국민은 고문을 받지 아니하며, 형사상 자기에게 불리한 진술을 강요당하지 아니한다. 공개하지 아니한 회의내용의 공표에 관하여는 법률이 정하는 바에 의한다.
+        명령·규칙 또는 처분이 헌법이나 법률에 위반되는 여부가 재판의 전제가 된 경우에는 대법원은 이를 최종적으로 심사할 권한을 가진다. 국가는 농수산물의 수급균형과 유통구조의 개선에 노력하여 가격안정을 도모함으로써 농·어민의 이익을 보호한다.</div>
+    <div class="div-test" id="div2">모든 국민은 고문을 받지 아니하며, 형사상 자기에게 불리한 진술을 강요당하지 아니한다. 공개하지 아니한 회의내용의 공표에 관하여는 법률이 정하는 바에 의한다.
+        명령·규칙 또는 처분이 헌법이나 법률에 위반되는 여부가 재판의 전제가 된 경우에는 대법원은 이를 최종적으로 심사할 권한을 가진다. 국가는 농수산물의 수급균형과 유통구조의 개선에 노력하여 가격안정을 도모함으로써 농·어민의 이익을 보호한다.</div>
+    <div class="div-test" id="div3">모든 국민은 고문을 받지 아니하며, 형사상 자기에게 불리한 진술을 강요당하지 아니한다. 공개하지 아니한 회의내용의 공표에 관하여는 법률이 정하는 바에 의한다.
+        명령·규칙 또는 처분이 헌법이나 법률에 위반되는 여부가 재판의 전제가 된 경우에는 대법원은 이를 최종적으로 심사할 권한을 가진다. 국가는 농수산물의 수급균형과 유통구조의 개선에 노력하여 가격안정을 도모함으로써 농·어민의 이익을 보호한다.</div>
+
+    <h3>배경 이미지 테스트</h3>
+    <pre>background-image 속성을 이용하여 배경 사진을 넣을 수 있다. 사진 크기에 따라 반복하여 이미지가 나타난다</pre>
+    <pre>배경 이미지의 반복 방법을 지정하기 위해 background-repeat 속성을 이용할 수 있다</pre>
+    <pre>배경 이미지가 요소보다 크거나 작은 경우 배경 이미지의 크기를 bacdground-size 속성으로 변경할 수 있다</pre>
+    <div id="bg-img"></div>
+
+</body>
+</html>

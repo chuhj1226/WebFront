@@ -1,0 +1,322 @@
+/* ----------------------------- head --------------------------------- */
+@charset "UTF-8"; 
+
+html {
+    font-size: 100%;  
+    font-family: 'Gowun Batang', serif;
+    /* font-family: 'Source Code Pro', monospace; */
+}
+
+/* 전체 글자 색, 글자 간격(세로) 변경 */
+body {
+    color: #432;
+    line-height: 2.0; 
+}
+
+/* 링크 밑줄 제거, 링크 글자 색 변경 */
+a {
+    text-decoration: none;
+    color: #432;
+}
+
+/* ----------------------------------header-------------------------------------- */
+/* 헤더 배경색 변경 */
+#home {
+    background-color: rgb(242, 244, 253);
+}
+
+/* 홈 아이콘 높이 조절 */
+.icon-home {
+    margin-top: 40px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.icon-home:hover {
+    background-color: pink;
+}
+
+
+
+/* 헤더(로고 내비) 수평 정렬 */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* 최대 출력 너비 조정 (div들) */ 
+.wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 4%;
+}
+
+/* 리스트 수평정렬, 순번 제거 */
+.main-nav {
+    display: flex;
+    list-style: none;
+}
+
+/* 리스트 너비, 위치, 폰트 사이즈 조절 */
+.main-nav li {
+    margin-top: 40px;
+    font-size: 25px;
+    padding-left: 60px;
+}
+
+
+/* 메인타이틀 모양잡기 */
+.main-title {
+    margin-top: 40px;
+    font-size: 40px;
+    /* margin-left: 70px; */
+    padding-bottom: 30px;
+    /* border-top: 1px #432 solid; */
+    padding-top: 10px;
+    display: block;
+    text-align: center;
+    /* border-bottom: 1px #432 solid; */
+}
+
+/* 메뉴버튼들 마우스 오버 색 변경 */
+.main-nav a:hover {
+    color : rosybrown;
+}
+
+
+/* --------------------------------center----------------------------------- */
+
+/* 중앙부 위치 조절 */
+.center {
+    font-family: 'Gowun Batang', serif;
+    padding-top: 80px;
+    padding-left: 90px;
+    padding-bottom: 270px;
+
+}
+
+/* 리스트 꾸밈제거 */
+.center li {
+    list-style: none;
+    line-height: normal;
+}
+
+/* 셀카이미지 위치, 크기조정 */
+.selfie {
+    position: absolute;
+    max-height: 30vh;
+    margin-left: 280px;
+    border-radius: 50px;
+    box-shadow: 5px 5px 3px 2px lightgray;
+}
+
+/* 리스트 위치 */
+.right-header {
+    position: absolute;
+    margin-top: 280px;
+    margin-left: 600px;
+    top: 10px;
+    font-style: italic;
+    font-size: 18px;
+}
+
+/* 리스트 꾸밈 */
+.lists {
+    border: lavender 5px solid;
+    border-radius: 100px;
+    background-color: white;
+    margin-bottom: 10px;
+    /* margin: 10px; */
+    padding: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-style: dotted;
+}
+
+/* 코멘트부 꾸밈 */
+.bottom-header {
+    border-top: 1px #432 solid;
+    margin-top: 200px;
+    font-size: 25px;
+    /* left: 20px; */
+    /* margin-left: 10px; */
+    /* border-bottom: 1px #432 solid; */
+}
+
+/* 코멘트 위치조절 */
+.bottom-header p {
+    position: relative;
+    bottom: 100px;
+    font-size: 80%;
+    right: 40px;
+    text-align: center;
+}
+
+/* 코멘트 타이틀 위치조절 */
+.comment-title {
+    position: relative;
+    bottom: 150px;
+    right: 40px;
+    text-align: center;
+    font-size: 150%;
+}
+
+
+
+/*-------------------------------------footer--------------------------------  */
+/* 하단부 꾸밈 */
+
+footer {
+    background-color:black;
+    line-height: 1.3;
+    padding: 10px;
+    text-align: center;
+}
+
+.footer-nav {
+    list-style: none;
+    
+}
+.footer-nav a {
+    color: white;
+}
+.footer-nav a:hover {
+    color :salmon;
+}
+
+footer nav {
+    margin-left: 70px;
+    color: white;
+}
+
+/* ----------------------------------petpage---------------------------------- */
+ 
+.pet-title {
+    text-align: center;
+    font-size: 70px;
+    margin-top: 150px;
+    margin-bottom: 150px;
+    background-color: pink;
+    box-shadow: 5px 5px 3px 2px lightgray;
+}
+
+.main-picture {
+    text-align: center;
+}
+
+.bigpuppy {
+    box-shadow: 5px 5px 3px 2px lightgray;
+    /* border-radius: 5px; */
+    max-width: 100vh;
+}
+
+.dog-profile {
+    margin-top: 5%;
+}
+
+.dog-profile li {
+    list-style: none;
+}
+
+/* 이미지 그리드 설정 */
+.dog-images {
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    /* grid-template-columns: repeat(3,minmax(240px, 1fr)); */
+    gap : 5%;
+    margin-top: 10%;
+    margin-bottom: 20%;
+}
+
+.dog-images li {
+    list-style: none;
+    border: 1px solid #432;
+}
+
+/* 이미지들 전체 설정 */
+.dimg {
+    max-width: 30vh;
+    border-radius: 20px;
+    box-shadow: 5px 5px 3px 2px lightgray;
+}
+
+/* 크기 다른 사진 조절 */
+.dog6 {
+    max-height: 40vh;
+}
+
+/* fixed img 위치 */
+.fixedimg {
+    position: fixed;
+    bottom: 100px;
+    left: 100px;
+    box-shadow: none;
+}
+
+/* fixed img 크기, 모양 */
+.dfix {
+    max-height: 20vh;
+    border-radius: 20px;
+    border: 1px solid #432;
+}
+
+/* mobile version ------------------------------------------------------------------------------------------------ */
+
+@media (max-width:1000px) {
+    /* 중앙부 여백 재조절 */
+    .center {
+        padding-top: 10%;
+        padding-bottom: 10%;
+    }
+
+    /* 사진, 리스트 위치 재정렬 */
+    .selfie,
+    .right-header {
+        position: relative;
+        text-align: center;
+        margin: auto;
+        padding: auto;
+        display: block;
+    }
+
+    /* 사진 크게 변경 */
+    .selfie {
+        max-height: 500px;
+    }
+
+
+}
+
+@media (max-width:600px) {
+    /* 사진과 하단부 간격 넓힘 */
+    .dog-images {
+        margin-bottom: 350px;
+    }
+
+    /* 큰강아지사진 작게 */
+    .bigpuppy {
+        max-width: 80%;
+    }
+
+}
+
+@media (max-width:1200px) {
+
+    /* fixed 설정 제거, 정렬  */
+    .fixedimg {
+        position: relative;
+        display: inline;
+        left: 0px;
+        
+    }
+    
+    /* fixed 이미지 크기 여백 재설정 */
+    .dfix{
+        margin-top: 20%;
+        border: 1px solid #432;
+        max-width: 30vh;
+        border-radius: 20px;
+        box-shadow: 5px 5px 3px 2px lightgray;
+
+    }
+}

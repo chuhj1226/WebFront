@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실습7_문서수정</title>
+    <style>
+        .first,
+        .second,
+        .third {
+            width : 100px;
+            height : 100px;
+            border : 1px solid black;
+            display : inline-block;
+            margin : 10px;
+        }
+
+        .hour { color : red; }
+        .min { color : green; }
+        .sec { color : blue; }
+
+        .outer {  		
+            width: 400px;		
+            text-align: center;
+            background: #dbdbdb;
+        }
+
+        div.box {
+            width: 500px;	
+            height: 50px;
+            box-align: center middle;		
+            margin: 10px;
+            padding: 10px;
+            background: #ffcc00;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>실습7_문서수정</h1>
+    
+    <h3>문제 1</h3>
+    <p>
+        버튼 클릭 시 아래 ul 태그(id:list)의 
+        하위 태그(li)를 모두 삭제하는 deleteList 함수를 만든다.
+    </p>
+    <button onclick="deleteList();">목록 삭제</button>
+    <ul id="list">
+        <li>의류</li>
+        <li>잡화</li>
+        <li>가전</li>
+        <li>가구</li>
+        <li>식품</li>
+        <li>레저</li>
+        <li>여가</li>
+        <li>도서</li>
+    </ul>
+    <script>
+        function deleteList(){
+            let list = document.querySelector('#list');
+            list.remove();
+
+        }
+
+    </script>
+
+    
+    <h3>문제 2</h3>
+    <p>
+        버튼 클릭 시 "추가할 목록을 입력하세요"라는 prompt 창을 띄우고
+        입력 받은 값을 내부 텍스트로 하여 동적으로 li 요소 생성 후
+        위 ul 태그(id:list)의 하위 태그로 추가한다.<br>
+        입력하지 않고 취소 했을 시에는 추가하지 않는다.
+    </p>
+    <button onclick="createList();">목록 생성</button>
+    
+    <script>
+        function createList(){
+            let input = prompt('추가할 목록을 입력하세요');
+            let list = document.querySelector('#list');
+            
+            let newList1  = document.createElement('li');
+            
+            let text = document.createTextNode(input);
+            newList1.append(text);
+
+            if(input){
+                list.append(newList1);
+            }
+        }
+    </script>
+
+   
+    <h3>문제 3</h3>
+    <p>
+        왼쪽으로 버튼 클릭 시 하단의 first, second, third div가 한 칸씩 왼쪽으로 이동하고,<br>
+        오른쪽으로 버튼 클릭 시 한 칸씩 오른쪽으로 이동하게 하는 left, right 함수를 작성한다.<br>
+        Ex. first - second - third 인 상태에서 left 1번 클릭하면 second - third - first로 변경<br>
+        left 한 번 더 클릭하면 third - first - second 로 변경<br>
+        해당 상태에서 오른쪽으로 클릭하면 다시 second - third - first 로 변경
+    </p>
+    <button onclick="left();">왼쪽으로</button>
+    <button onclick="right();">오른쪽으로</button>
+    <div id="area">
+        <div class="first">first</div>
+        <div class="second">second</div>
+        <div class="third">third</div>
+    </div>
+    <script>
+        
+        let area = document.querySelector('#area');
+        let first = document.querySelector(".first");
+        let second = document.querySelector(".second");           
+        let third = document.querySelector(".third");
+
+        function left(){    
+            area.append(area.firstElementChild);
+        }
+
+        function right(){
+            area.prepend(area.lastElementChild);
+        }
+    </script>
+    
+    <h3>문제 4</h3>
+    <p>
+        시작 버튼을 누르면 hh:mm:ss의 공간에 현재 시간이 보여지고 멈춤 버튼을 누르면 다시 hh:mm:ss로
+        보여지게 하는 start, stop 함수를 작성한다.<br>
+        단, 한자리 숫자는 앞에 0을 붙여서 두자리로 표현한다.
+    </p>
+    <button onclick="start();">시작</button>
+    <button onclick="stop();">멈춤</button>
+    <div id="clock">
+        <span class="hour">hh</span>:<span class="min">mm</span>:<span class="sec">ss</span>
+    </div>
+    <script>
+        
+        let hour = document.querySelector('.hour');
+        let min = document.querySelector('.min');
+        let sec = document.querySelector('.sec');
+        
+        let timer;
+        
+        function start(){
+            let count = 0;
+
+        if(timer == undefined){
+
+            timer = setInterval(function(){
+                    let date = new Date();
+                    hour.textContent = date.getHours();
+                    min.textContent = date.getMinutes();
+                    sec.textContent = date.getSeconds();
+                },1000);
+            }
+        }
+
+        function stop(){ 
+            clearInterval(timer);
+            timer = undefined;
+            hour.textContent = 'hh';
+            min.textContent = 'mm';
+            sec.textContent = 'ss';
+        }
+    </script>
+    
+    <h3>문제 5</h3>
+    <p>
+        아래의 titleBox, dateBox, writerBox는 기본적으로 보여지지 않게 설정 되어 있다.<br>
+        radio 태그를 클릭하면 showDiv라는 함수를 호출하면서 해당 input 태그를 매개변수로 전달한다.<br>
+        제목이 선택되면 titleBox만 보이게, 날짜가 선택되면 dateBox만 보이게,
+        작성자가 선택되면 writerBox만 보이게 하는 showDiv 함수를 작성한다.
+    </p>
+    <div class="outer">
+		<legend>검색할 항목을 선택하세요.</legend>
+		<input type="radio" name="category" value="title" onclick="showDiv(this);" id="title">
+		<label for="title">제목</label>&nbsp; &nbsp; 
+		<input type="radio" name="category" value="date" onclick="showDiv(this);"  id="date">
+		<label for="date">날짜</label>&nbsp; &nbsp; 
+		<input type="radio" name="category" value="writer" onclick="showDiv(this);" id="writer">
+		<label for="writer">작성자</label>&nbsp; &nbsp;
+	</div>
+
+	<div id="titleBox" class="box">
+		<form method="post" action="">
+			<label> 검색할 제목을 입력하세요 : </label>
+			<br> 
+			<input type="search" name="title" size="50"> &nbsp;
+			<input type="submit" value="검색">
+		</form>
+	</div>
+	<div id="dateBox" class="box">
+		<form method="post" action="">
+			<label> 검색할 날짜를 선택하세요 : </label>
+			<br>
+			<input type="date" name="start"> - 
+			<input type="date" name="end"> &nbsp; 
+			<input type="submit" value="검색">
+		</form>
+	</div>
+	<div id="writerBox" class="box">
+		<form method="post" action="">
+			<label> 검색할 작성자 아이디를 입력하세요 : </label>
+			<br>
+			<input type="search" name="writer" size="25"> &nbsp; 
+			<input type="submit" value="검색">
+		</form>
+	</div>
+    <script>
+        function showDiv(){
+            if(document.getElementById('title').checked){
+                document.getElementById('titleBox').style.display = 'block';
+            }else{
+                document.getElementById('titleBox').style.display = 'none';
+            }
+
+            if(document.getElementById('date').checked){
+                document.getElementById('dateBox').style.display = 'block';
+            }else{
+                document.getElementById('dateBox').style.display = 'none';
+            }
+            if(document.getElementById('writer').checked){
+                document.getElementById('writerBox').style.display = 'block';
+            }else{
+                document.getElementById('writerBox').style.display = 'none';
+            }
+
+        }
+                    
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<!-- 1.head 작성-->
+<head>
+    <!-- meta tag : metadata(정보에 대한 정보) 제공
+    화면에 표시되지는 않지만 검색 엔진/브라우저에 읽힘-->
+    <meta charset="UTF-8">
+    <!-- IE 브라우저에서 최신 표준 모드를 선택하는 문서 모드-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 뷰 포트 : 화면 상의 화상 표시 영역
+    데스크탑과 모바일의 뷰 포트는 차이가 있음. 너비를 디바이스에 맞춤. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 사이트에 대한 설명 -->
+    <meta name="description" content="Full Screen Site">
+    <title>15_그리드 실습</title>
+
+    <!-- CSS -->
+    <!-- 브라우저 별로 디폴트로 적용 된 css에 차이(여백,폰트 크기 등)가 있어 CSS가 별도로
+        지정 되지 않은 요소는 브라우저 별로 다르게 보일 가능성이 있음. 만들어져 있는 리셋 CSS 활용. -->
+    <!-- ress.css (모든 CSS 리셋이 아니라 디폴트 스타일을 활용해서 브라우저들의 최소한의 오차를 없앰)
+    https://github.com/filipelinhares/ress -->
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+
+    <!-- 외부 스타일 시트 -->
+    <link href="resources/css/style.css" rel="stylesheet">
+    <!-- favicon (Real Favicon Generator)-->
+    <link rel="icon" type="image/x-icon" href="resources/image/khfavicon.ico">
+    <!-- 웹 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <!-- 4. 화면을 꽉 채우는 배경 이미지 배치 -->
+<div id="menu" class="big-bg">
+    <!-- 2. header 만들기 -->
+    <header class="page-header wrapper">
+        <h1>
+            <a href="13_풀스크린실습.html">
+                 <img class="logo" src="resources/image/logo.jpg" alt="KH HOME">
+            </a>
+        </h1>
+        <nav>
+            <ul class="main-nav">
+                <li><a href="14_컬럼나누기실습.HTML">News</a></li>
+                <li><a href="15_그리드실습.HTML">Menu</a></li>
+                <li><a href="#">Contect</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- 3.콘텐츠 부분 만들기-->
+    <div class="menu-content wrapper">
+        <h2 class="page-title">Menu</h2>
+        <p>
+            UI/UX 스마트 콘텐츠 웹 기반 융합 응용SW 개발자 양성과정에 오신 여러분을
+            진심으로 환영합니다. 웹 어플리케이션 개발에 대한 기초를 다지기 위해
+            해당 과정에서 학습할 수 있는 하단의 메뉴를 확인해보세요.
+        </p>
+    </div>
+</div>
+<!-- 5. 그리드형 컨텐츠  -->
+<div class="wrapper grid">
+    <div class="item">
+        <img src="resources/image/java.png" alt="Java">
+        <p>자바 시작하기</p>
+    </div>
+    <div class="item">
+        <img src="resources/image/oracle.jpg" alt="oracle">
+        <p>oracle 시작하기</p>
+    </div>
+    <div class="item">
+        <img src="resources/image/jdbc.png" alt="JDBC">
+        <p>JDBC 시작하기</p>
+    </div>
+    <div class="item">
+        <img src="resources/image/html.png" alt="HTML5">
+        <p>HTML5 시작하기</p>
+    </div>
+    <div class="item big-box">
+        <img src="resources/image/css.png" alt="CSS3">
+        <p>CSS3 시작하기</p>
+    </div>
+    <div class="item">
+        <img src="resources/image/js.png" alt="JavaScript">
+        <p>JavaScript 시작하기</p>
+    </div>
+    <div class="item">
+        <img src="resources/image/servlets.png" alt="Servlets & JSP">
+        <p>Servlets & JSP 시작하기</p>
+    </div>
+    <div class="item">
+        <img src="resources/image/mybatis.png" alt="Mybatis">
+        <p>Mybatis 시작하기</p>
+    </div>
+    <div class="item">
+        <img src="resources/image/spring.png" alt="Spring Framework">
+        <p>Spring Framework 시작하기</p>
+    </div>
+</div>
+<!-- 4. 푸터 만들기 -->
+<footer>
+    <div class="wrapper">
+        <p><small>&copy; 2021 KH Academy</small></p>
+    </div>
+</footer>
+</body>
+</html>

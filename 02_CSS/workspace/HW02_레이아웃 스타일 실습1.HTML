@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>레이아웃 스타일 실습</title>
+    <style>
+     
+        .block {
+            width : 100px;
+            height : 100px;
+        }
+
+        .area1 { 
+            background-image: url("resources/image/flower3.PNG"); 
+            background-size: 100px 100px;
+        }
+        
+        .area2 {
+            padding: 30px 30px;
+        }
+    
+        .block-test1{
+            display: block;
+        }
+        
+        .block-test2{
+            display : inline-block;
+        }
+
+        .block-test3{
+            display: inline;
+        }
+
+        
+        .area5 { background : red; }
+        .area6 { background : yellow; }
+        .area7 { background : green; }
+        
+        .filed {border-style:hidden ; 
+            box-shadow:5px 5px 3px 2px gray;
+            margin: 2px ;}
+    </style>
+</head>
+<body>
+    <h1>레이아웃 스타일 실습1</h1>
+    <span>저는 span 태그입니다. 그림과 버튼을 제 아래로 배치 시켜주세요.</span>
+    <img class = "block block-test1 area1"></img>
+    <button class = "block block-test1 area2">Click!</button>
+    
+    <br><hr><br>
+    <fieldset class = "block-test3 area3" >
+        <legend>로그인</legend>
+            
+                <div>아이디 : <input type="text" placeholder="아이디를 입력하세요"><br>
+                비밀번호 : <input type="text" placeholder="비밀번호를 입력하세요">
+                    <input type="button" value="확인"></div>   
+    </fieldset>
+    
+    <div class = "filed block-test3 area5">div 영역</div>
+    <div class = "filed block-test3 area6">div 영역</div>
+    <div class = "filed block-test3 area7">div 영역</div>
+
+    
+
+</body>
+</html>

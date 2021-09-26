@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>17_마우스와 스크롤 이벤트</title>
+    <style>
+        .area{
+            background: lightgray;
+            border: 1px solid black;
+            min-height: 100px;
+        }
+        .imageArea{
+            margin: 20px;
+            border: 2px solid lightgray;
+            height: 200px;
+            overflow-y: scroll;
+        }
+    </style>
+</head>
+<body>
+    <h1>키보드 이벤트</h1>
+    <ul>
+        <li>keydown : 키를 누를 때</li>
+        <li>keyup : 키를 놓을 때 </li>
+    </ul>
+    <h3>키보드 이벤트 테스트</h3>
+    <input type="text" id="content" placeholder="아무 키나 입력하세요">
+    <p>
+        event.key : 문자 <br>
+        event.code : 물리적인 키 코드<br>
+        Ex. 소문자 a를 입력하면 event.key = a, event.code = keyA<br>
+        대문자 A를 입력하면 event.key = A, event.code = KeyA
+    </p>
+    <div id="area1" class="area"></div>
+    <script>
+        let content = document.querySelector("#content");
+        let area1 = document.querySelector("#area1");
+
+        content.onkeydown = function(){
+            area1.insertAdjacentHTML('beforeend','keydown event.key='+event.key+' event.code='+event.code+'<br>');
+        };
+        content.onkeyup = function(){
+            area1.insertAdjacentHTML('beforeend','keyup event.key='+event.key+' event.code='+event.code+'<br>');
+        };
+    </script>
+    <h3>전화번호 입력 받기</h3>
+    <input type="tel" placeholder="전화번호를 입력하세요"
+    onkeydown="return checkPhoneNumber(event.key);">
+    <script>
+        function checkPhoneNumber(key){
+            return (key >= '0' && key <= '9') || key == '-'||
+            key == 'ArrowLeft' || key == 'ArrowRight' || key == 'Delete' || key == 'Backspace';
+        }
+    </script>
+
+    <h1>스크롤 이벤트</h1>
+    <p>
+        마우스의 스크롤을 움직였을 때 발생하는 이벤트로
+        컨텐츠 내용 더보기 등에 사용할 수 있음<br>
+        element.scrollHegiht : 요소 스크롤 뷰 높이<br>
+        element.scrollTop : 요소 세로 스크롤 위치<br>
+        element.scrollLeft : 요소 왼쪽 스크롤 위치<br>
+        element.clientHeight : 요소 안쪽 높이
+    </p>
+
+    <div class="imageArea"></div>
+
+    <script>
+        // 추가할 이미지 목록
+        let imageArr = ['pikachu.png', 'pikachu2.png','pikachu3.jpg'];
+        // div
+        let imageArea = document.querySelector('.imageArea');
+        // 전달 받은 fileName을 가진 img 태그 추가하는 함수
+        function addImage(fileName){
+            let html = '';
+            for(let i = 0 ; i < 36; i++) {
+                html += '<img src="resources/images/'+fileName+'" width="100" hegiht="100">';
+            }
+            imageArea.innerHTML += html;
+        }
+        // 문서 로드 시 함수 호출하여 첫번째 이미지 div에 넣어 놓음
+        let index = 0; 
+        addImage(imageArr[index]);
+
+        // div에 scroll 이벤트 발생 시
+        imageArea.addEventListener('scroll',function(){
+            console.log('imageArea 높이 : '+imageArea.clientHeight);
+            console.log('imageArea 스크롤 위치 : '+imageArea.scrollTop);
+            console.log('imageArea 스크롤 높이 : '+imageArea.scrollHeight);
+
+            // div 높이 + 스크롤 위치 == div 스크롤 높이
+            // 스크롤이 맨 끝에 닿았을 때
+            if(imageArea.scrollTop + imageArea.clientHeight == imageArea.scrollHeight){
+                index = ++index < imageArr.length ? index : index - imageArr.length;
+                addImage(imageArr[index]);
+            }
+        });
+
+
+
+
+
+
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

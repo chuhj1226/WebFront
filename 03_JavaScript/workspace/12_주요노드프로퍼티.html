@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12_주요 노드 프로퍼티</title>
+</head>
+<body>
+    <h1>주요 노드 프로퍼티</h1>
+    <h3>innerHTML</h3>
+    <p>
+        요소 안 HTML을 문자열 형태로 받아올 수 있음<br>
+        요소 안 HTML을 수정하는 것도 가능함
+    </p>
+    <script>
+        // 내용 읽기
+        console.log(document.body.innerHTML);
+
+        // 내용 변경
+        // document.body.innerHTML = '새로운 BODY!';
+
+    </script>
+    
+    <div id="area1">
+        자바스크립트에서 태그 앨리먼트의 값을 읽거나, 변경할 때 innerHTML 속성을 사용함
+    </div>
+    <button onclick="checkValue();">innerHTML 확인</button>
+    <script>
+        function checkValue(){
+            // 아이디를 이용하여 요소 선택
+            let divEl = document.getElementById('area1');
+            // 요소의 내부 HTML 값 alert 출력
+            alert(divEl.innerHTML);
+            // 요소의 내부 HTML 값 변경
+            divEl.innerHTML = 'innerHTML 속성으로 값 변경함';
+        }
+    </script>
+    
+    <h3>outerHTML</h3>
+    <p>
+        outerHTML 속성에는 요소 전체 HTML이 담김<br>
+        outerHTML은 innerHTML에 요소 자체를 더한 것 <br>
+        innerHTML은 요소 값을 수정하지만 outerHTML은 요소 값을 수정할 수 없음
+    </p>
+
+    <div id="area2">
+        area2 영역입니다.
+    </div>
+    <script>
+        let area2 = document.getElementById('area2');
+        console.log(area2.outerHTML);
+    </script>
+
+    <h3>textContent</h3>
+    <p>
+        요소 내의 텍스트에 접근할 수 있으며 태그는 제외하고 오로지 텍스트만 추출함<br>
+        사용자의 입력 값을 받아 처리해야 하는 경우 사용자가 입력한 값은 텍스트로 처리 되어야 함<br>
+        예상치 못한 HTML이 사이트에 침투하는 것을 막기 위해 사용함
+    </p>
+    <div id="area3">
+        <p>area3 영역입니다.</p>
+        <p>문단을 나누어봅니다.</p>
+    </div>
+    <div id="area4"></div>
+    <div id="area5"></div>
+
+    <script>
+        let area3 = document.getElementById('area3');
+        console.log(area3.textContent);
+
+        let input = prompt('값을 입력하세요','<p><b>강조할거에요</b></p>');
+        document.getElementById('area4').innerHTML = input; // 오로지 텍스트로만 처리됨
+        document.getElementById('area5').textContent = input; // 태그까지 딸려옴
+
+
+
+
+    </script>
+    <h3>hidden</h3>
+    <p>
+        hidden은 요소를 보여줄지 말지 지정할 때 사용함<br>
+        HTML 안에서도 쓸 수도 있고 자바스크립트에서도 쓸 수 있음<br>
+        기술적으로 style="display:none"과 동일함
+    </p>
+    <div hidden>숨겨진 div</div>
+    <div id="area6">area6 영역도 숨기기</div>
+    <script>
+        document.getElementById('area6').hidden = true;
+    </script>
+
+    <h3>value</h3>
+    <p>
+        input, select, textarea의 값이 저장되는 속성
+    </p>
+    <form>
+        이름 : <input type="text" name="username" id="username">
+        <input type="button" onclick="readValue();" value="이름 값 확인">
+    </form>
+    <div id="area7"></div>
+    <script>
+        function readValue(){
+            let username = document.getElementById('username');
+
+            if(username.value == ""){
+                alert('이름을 입력하세요.');
+                username.focus();
+            } else{
+                document.getElementById('area7').innerHTML = username.value;
+            }
+        }
+    </script>
+
+    <h3>DOM 프로퍼티와 HTML 속성</h3>
+    <p>
+        HTML에서 태그는 복수의 속성을 가질 수 있음<br>
+        브라우저는 HTML을 파싱해 DOM 객체를 만들 때 HTML 표준 속성을 인식하고,
+        이 표준 속성을 사용해 DOM 프로퍼티를 만듦<br>
+        비표준 속성은 DOM 프로퍼티로 전환되지 않음<br>
+        비표준 속성에게도 활용할 수 있는 메소드<br>
+        element.hasAttribute(name) : 속성 존재 여부 확인<br>
+        element.getAttribute(name) : 속성 값을 가져옴<br>
+        element.serAttribute(name, value) : 속성 값을 변경함<br>
+        element.removeAttribute(name) : 속성 값을 지움<br>
+    </p>
+    <div id="area8" something="non-standard"></div>
+    <script>
+        let area8 = document.querySelector('#area8');
+        console.log(area8.id); // 표준 속성은 DOM의 프로퍼티로 변환
+        console.log(area8.something);   // 비표준 속성은 DOM의 프로퍼티로 변환 되지 않음 => undefined
+        console.log(area8.hasAttribute('something'));
+        console.log(area8.getAttribute('something'));
+        area8.setAttribute('something','modify');    
+        console.log(area8.getAttribute('something'));
+        area8.removeAttribute('something');
+        console.log(area8.hasAttribute('something'));
+    </script>
+    
+
+</body>
+</html>

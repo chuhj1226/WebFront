@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07_배열</title>
+</head>
+<body>
+    <h1>배열</h1>
+    <h3>배열이란?</h3>
+    <p>
+        자바스크립트에서는 별도의 자료형 지정이 없기 때문에
+        "모든 자료형"을 보관하는 변수의 모음을 배열로 처리함<br>
+        자바에서의 컬렉션과 비슷함
+    </p>
+    <script>
+        function test1() {
+            let arr = ['홍길동', 20, true, [1, 2, 3, 4]];
+
+            // 배열 출력
+            console.log(arr);
+            console.log('arr : '+arr);
+            // 배열 길이
+            console.log(arr.length);
+
+            // 인덱스 접근
+            console.log(arr[0]);
+            console.log(arr[1]);
+            console.log(arr[2]);
+            console.log(arr[3]);
+
+            // 배열 속 배열 인덱스 접근
+            console.log(arr[3][0]);
+            console.log(arr[3][1]);
+            console.log(arr[3][2]);
+            console.log(arr[3][3]);
+        }
+        // test1();
+    </script>
+
+    <h3>배열의 선언</h3>
+    <p>
+        배열 선언 시 배열의 크기를 정하거나, 정하지 않고 선언할 수 있음
+    </p>
+    <script>
+        function test2(){
+            // new Array()로 배열 생성
+            let arr1 = new Array();
+            let arr2 = new Array(3);
+
+            // 배열 출력
+            console.log(arr1);
+            console.log(arr2);
+
+            // 배열 길이 출력
+            console.log(arr1.length);
+            console.log(arr2.length);
+
+            // 배열 길이가 101이 됨
+            // => length는 요소 내의 개수가 아니라 가장 큰 인덱스에 1을 더한 값
+            arr2[100] = '테스트';
+            console.log(arr2);
+            console.log(arr2.length);
+
+            // length에 0을 기록하면 값 삭제도 가능함
+            arr2.length = 0;
+            console.log(arr2);
+
+            // 배열에 값 대입
+            arr1[0] = '바나나';
+            arr1[1] = '복숭아';
+            arr1[2] = '키위';
+            arr1[3] = '딸기';
+
+            console.log(arr1);
+
+            // new 연산자를 활용한 초기화
+            let arr3 = new Array('홍길동','임꺽정','신사임당');
+            console.log(arr3);
+
+            // 대괄호를 활용한 초기화
+            let arr4 = ['java','oracle','html5','css','javascript'];
+            console.log(arr4);
+        }
+        // test2();
+    </script>
+
+    <h3>배열 순회</h3>
+    <p>
+        일반 for문, for of 문 등을 사용할 수 있음
+    </p>
+
+    <script>
+        function test3(){
+            let arr = ['java','oracle','html5','css','javascript'];
+
+            // for문
+            for(let i = 0 ; i < arr.length; i++) {
+                console.log(arr[i]);
+            }
+
+            // for of문
+            for(let subject of arr){
+                console.log(subject);
+            }
+        }
+        // test3();
+    </script>
+
+    <h3>배열 객체의 메소드</h3>
+    <p>
+        배열도 하나의 객체이기 때문에 배열에서 활용할 수있는 메소드가 있음
+    </p>
+
+    <h3>요소 추가/제거</h3>
+    <h4>push : 배열의 맨 뒤 요소 추가, pop : 배열의 맨 뒤 요소 제거</h4>
+
+    <script>
+        function test4(){
+            let arr = ['짜장면', '짬뽕', '우동'];
+
+            console.log('push 전 arr : '+arr);
+
+            // arr.push('탕수육');
+            // arr.push('양장피');
+            arr.push('탕수육','양장피');
+
+            console.log('push 후 arr : '+arr);
+
+            console.log('arr.pop() : '+arr.pop());
+            console.log('arr.pop() : '+arr.pop());
+            console.log('arr.pop() : '+arr.pop());
+
+            console.log("pop 후 arr : "+arr);
+        }
+        // test4();
+    </script>
+
+    <h4>shift : 배열의 맨 앞 요소 제거 후 반환, unshift : 배열의 맨 앞 요소 추가</h4>
+
+    <script>
+        function test5() {
+            let arr = ['양념치킨','후라이드','파닭'];
+
+            console.log('unshift 전 arr : '+arr);
+
+            // arr.unshift('간장치킨');
+            // arr.unshift('마늘치킨');
+            arr.unshift('간장치킨','마늘치킨');
+
+            console.log('unshift 후 arr : '+arr);
+
+            console.log('arr.shift() : '+arr.shift());
+            console.log('arr.shift() : '+arr.shift());
+            console.log('arr.shift() : '+arr.shift());
+
+            
+            console.log('shift 후 arr : '+arr);
+
+            
+
+        }
+        // test5();
+    </script>
+
+<h4>slice : 배열의 요소 선택 잘라내기, splice : 배열의 index 위치의 요소 제거 및 추가</h4>
+     
+    <script>
+        function test6() {
+            let arr = ['java','html','css','javascript'];
+
+            // slice(시작 인덱스, 종료 인덱스)
+            // 원본 배열에 영향 끼치지 않음
+            console.log('slice(2, 4) : '+arr.slice(2,4));
+            console.log('arr : '+arr);
+
+            // splice(index, 제거수, 추가값1, 추가값2, ...);
+            // 리턴 값은 제거 된 값
+            // 원본 배열에 영향을 미침
+            // 제거 완료 후 값이 추가 됨
+            console.log("splice(2,1,'jsp') : "+arr.splice(2,1,'jsp'));
+            console.log('arr : '+arr);
+        }
+        // test6();
+    </script>
+
+    <h4>concat : 두개 이상의 배열을 결합</h4>
+    <script>
+        function test7(){
+            let arr1 = ['오마이걸','블랙핑크','아이유'];
+            let arr2 = ['트와이스','에스파'];
+
+            // concat(배열명1, 배열명2, ...)
+
+            let arr3 = arr1.concat(arr2);
+            let arr4 = arr2.concat(arr1, arr3);
+
+            console.log('arr1 : '+arr1);
+            console.log('arr2 : '+ arr2);
+            console.log('arr1 기준으로 arr2 배열을 합친 arr3 : '+arr3);
+            console.log('arr2 기준으로 arr1, arr3 배열을 합친 arr4 : '+arr4);
+
+        }
+        // test7();
+    </script>
+
+    <h3>배열 forEach</h3>
+    <p>
+        배열.forEach(function(item, index, Array){
+            // 배열 요소에 각각 실행할 기능 작성
+        });
+    </p>
+    <script>
+        function test8(){
+            let arr=[1,2,3,4,5];
+
+            arr.forEach(function(item, index, array){
+                console.log(item+ " "+index + " "+ array);
+            });
+
+            // 각 요소별로 * 10 한 값을 콘솔로 출력
+            arr.forEach(item => console.log(item*10));
+        }
+        // test8();
+    </script>
+
+    <h3>배열 탐색</h3>
+    <h4>indexOf : 배열에서 요소가 위치한 인덱스를 리턴(앞에서부터 탐색),
+        lastIndexof : 배열의 요소가 위치한 마지막 인덱스를 리턴(뒤에서부터 탐색),
+        includes : 배열에 해당 요소 포함 여부 리턴</h4>
+        <script>
+            function test9(){
+                let arr = ['물회', '삼계탕','냉면','수박','물회'];
+
+                console.log("arr.indexOf('물회') : "+arr.indexOf('물회'));
+                // fromIndex 매개변수로 전달 시 해당 인덱스부터 앞으로 탐색
+                
+                console.log("arr.indexOf('물회',1) : "+arr.indexOf('물회',1));
+                console.log("arr.indexOf('삼겹살') : "+arr.indexOf('삼겹살'));
+
+                console.log("arr.lastIndexOf('물회') : "+arr.lastIndexOf('물회'));
+                // fromIndex 매개변수로 전달 시 해당 인덱스부터 뒤로 탐색
+                console.log("arr.lastIndexOf('물회',1) : "+arr.lastIndexOf('물회',1));
+                console.log("arr.indexOf('삼겹살') : "+arr.lastIndexOf('삼겹살'));
+
+                console.log("arr.inclues('물회') : "+arr.includes('물회'));
+                console.log("arr.inclues('삼겹살') : "+arr.includes('삼겹살'));
+            }
+            // test9();
+        </script>
+
+        <h3>배열 변형</h3>
+        <h4>map : 배열 요소 전체를 대상으로 함수 호출 후 결과 배열로 반환</h4>
+        <p>
+            배열.map(function(item, index, array){
+                // 배열 요소에 각각 반환할 새로운 값
+            });
+        </p>
+        <script>
+            function test10(){
+                let types = [true, 1, 'text'].map(item => typeof item);
+                console.log(types);
+
+                let length = ['apple','banana','cat','dog','egg'].map(item => item.length);
+                console.log(length);
+
+            }
+            // test10();
+        </script>
+
+        <h4>sort : 배열을 오름차순으로 정렬, reverse : 배열의 순서를 뒤집음</h4>
+        <p>
+            sort, reverse 수행 시 원본 데이터의 순서 자체가 변함
+        </p>
+        <script>
+            function test11(){
+                let arr = [];
+
+                for(let i = 0; i < 10; i++) {
+                    arr[i] = Math.floor(Math.random()*100)+1;
+                }
+
+                console.log('정렬 전 arr : '+arr);
+                
+                // 오름차순 정렬이 기본으로 정렬 후 정렬 순서 유지
+                // 배열은 기본적으로 문자열 정렬 되므로 한자리 수 등은 올바르지 않게 정렬
+                // 다른 정렬 기준을 사용하려면 매개변수로 compare 함수 전달
+                arr.sort();
+                console.log('정렬 후 arr : '+arr);
+                
+                // 숫자 오름차순 정렬
+                arr.sort(compare);
+                console.log('compare로 정렬 후 arr : '+arr);
+
+                // 숫자 내림차순 정렬
+                // arr.sort(function(a,b){
+                //     return b - a;
+                // });
+                arr.sort((a,b)=> b-a);
+
+                console.log('내림차순 정렬 후 arr : '+arr);
+
+                arr.reverse();
+                console.log('reverse 호출 후 arr : '+arr);
+
+            }
+            // test11();
+
+            function compare(a,b) {
+                if(a > b ) return 1;
+                if(a == b ) return 0;
+                if(a < b ) return -1;
+            }
+    
+        </script>
+
+        <h4>split : 문자열 구분자로 잘라 배열로 반환 , join : 배열을 구분자로 결합하여 문자열로 반환</h4>
+
+        <script>
+            function test12(){
+                let arr = ['사탕','초콜렛','껌','과자'];
+                console.log(arr);
+                console.log('arr.join() : '+arr.join());
+                console.log('arr.join("/") : '+arr.join("/"));
+
+                let str = arr.join(" ");
+                console.log(str);
+                console.log("str.split('*') : "+str.split(' '));
+                console.log(str.split('*'));
+            }
+            test12();
+        </script>
+
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>15_이벤트</title>
+    <style>
+        .area{
+            background: lightgray;
+            border: 1px solid black;
+            min-height: 100px;
+        }
+
+        .div-test{
+            border:  1px solid black;
+            padding: 20px;
+        }
+
+        .div1 { background: mistyrose;}
+        .div2 { background: ivory;}
+        .div3 { background: honeydew;}
+        .div4 { background: aliceblue;}
+    </style>
+</head>
+<body>
+    <h1>이벤트</h1>
+    <ul>
+        <li>마우스 이벤트(click, mouseover, mouseout, mousemove)</li>
+        <li>폼 요소 이벤트(submit, focus)</li>
+        <li>키보드 이벤트(keydown, keyup></li>
+        <li>문서 이벤트</li>
+    </ul>
+    등의 dom 이벤트 들이 있는데 이러한 이벤트가 발생했을 경우 실행 되는 함수를
+    이벤트 행들러라고 하며 핸들러를 할당하는 방법은 다양함.
+    
+    <h3>1. HTML 속성</ㅗ>
+    <p>
+        HTML 만의 onevent 속성에 이벤트 핸들러 할당하는 방법<br>
+        Ex. &lt;h3 onclick="실행코드"&gt; 등<br>
+        간단한 코드는 그냥 작성하기도 하지만 코드가 길다면 별도의 함수를 만들고 이를 호출함
+    </p>
+    <button onclick="alert('클릭했네?');">클릭해보세요</button>
+    <button onmouseover="mouseover(this);">마우스를 올려보세요</button>
+    <script>
+        function mouseover(elem){
+            alert('마우스를 올리지마세요!');
+            // 핸들러 내부에 쓰인 this의 값은 핸들러가 할당 된 요소
+            // => 이벤트가 발생한 button
+            console.log(elem);
+            console.log(elem.innerHTML);
+        }
+    </script>
+
+    <h3>2. DOM 프로퍼티</h3>
+    <p>
+        요소 객체가 갖고 있는 onevent 속성에 이베트 핸들러를 연결하는 방법<br>
+        Ex. element.onclick = 이벤트 핸들러(함수);<br>
+        해당 프로퍼티는 하나밖에 없기 때문에 여러 개의 이벤트를 할당할 수 없음<br>
+        만약 이벤트 객체를 제거할 땐 속성 값에 null을 넣어주면 됨
+    </p>
+    <button id='test1'>test1 실행확인</button>
+    <button id='test2'>test2 실행확인</button>
+    <div id='area1' class="area"></div>
+    <script>
+        let test1 = document.getElementById('test1');
+        let test2 = document.getElementById('test2');
+
+        test1.onclick = function() {
+            document.getElementById('area1').innerHTML += 'test1이 실행되었습니다.<br>';
+
+            // 핸들러 내부에 쓰인 this의 값은 핸들러가 할당 된 요소
+            // => 이벤트가 발생한 button
+            console.log(this);
+            console.log(this.innerHTML);
+
+        };
+
+        test1.onclick = () => alert('이벤트 덮어쓰기!');
+
+        // 선언 되어있는 함수를 핸들러에 할당 할 때는 함수명만 작성
+        test2.onclick = removeEvent;
+
+        function removeEvent() {
+            document.getElementById('area1').innerHTML += 'test2가 실행되면서 test1 이벤트 제거<br>';
+            test1.onclick = null; // 이벤트 제거
+        };
+    </script>
+
+    <h3>3. addEventListener</h3>
+    <p>
+        1,2번 방식의 이벤트 핸들러 할당의 경우 복수의 핸들러 할당 불가<br>
+        element.addEventListener(event, handler, [options]);<br>
+        element.removeEventListener(event, handler, [options]);<br>
+        event : 이벤트 이름, handler 핸들러 함수<br>
+        위의 메소드로 핸들러를 추가/삭제하면서 복수의 핸들러를 할당
+    </p>
+
+    <button id="btn">실행 확인</button>
+    <script>
+        let btn = document.querySelector("#btn");
+
+        btn.addEventListener('click', () => alert('첫 번째 이벤트'));
+
+        btn.addEventListener('click',() => btn.style.background = 'red');        
+
+        // 핸들러를 삭제하려면 핸들러 할당 시 사용한 함수를 그대로 전달해야 하므로
+        // 위와 같은 경우는 삭제 불가. 함수 선언하여 핸들러 할당하기
+        function myFunction(){
+            alert('곧 삭제 될 친구!');
+        }
+
+        btn.addEventListener('mouseover', myFunction);
+
+        // 삭제 테스트
+        btn.removeEventListener('mouseover',myFunction);
+    </script>
+
+    <h3>이벤트 객체</h3>
+    <p>
+        이벤트 객체는 이벤트에 대한 상세한 정보(눌린 키보드 키 값, 마우스 클릭 된 좌표)를
+        가지고 있음<br>
+        이벤트가 발생하면 브라우저는 이벤트 객체를 만들어 핸들러에 인수 형태로 전달함<br>
+        핸들러 내부에서 이벤트 타입과 요소 이벤트가 발생한 좌표등을 확인할 수 있음
+    </p>
+
+    <button id="evtObj">이벤트 객체 확인</button>
+    <!-- HTML 핸들러 안에서도 event 객체 사용 가능 (값 변경 불가능) -->
+    <button onclick="console.log(event);">이벤트 객체 확인</button>
+    <script>
+        let evtObj = document.querySelector("#evtObj");
+
+        evtObj.onclick = function(event){
+            console.log(event.type + " 이벤트");
+            console.log(event);
+            console.log(event.target);
+            console.log(this);
+            console.log('이벤트가 발생한 곳의 좌표는 '+event.clientX+":"+event.clientY);
+        }
+    </script>
+
+    <hr>
+
+    <h1>버블링과 캡쳐링</h1>
+    <p>
+        "버블링"이란 한 요소에 이벤트가 발생하면 할당 된 핸들러가 동작하고,
+        이어서 부모 요소의 핸들러가 동작하는 것<br>
+        가장 최상단의 조상요소를 만날 때 까지 이 과정이 반복 되면서 요소 각각에 할당 된 핸들러가 동작<br>
+        몇 가지 이벤트를 제외하고는 거의 모든 이벤트는 버블링 됨
+    </p>
+    <div class="div-test div1" onclick="alert('1번 div');">
+        <div class="div-test div2 " onclick="alert('2번 div');">
+            <div class="div-test div3" onclick="alert('3번 div');">
+                <div class="div-test div4" onclick="alert('4번 div');">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3>이벤트 버블링 막기</h3>
+    <p>
+            event.target : 실제 이벤트가 시작 된 타겟 요소로 버블링이 진행되어도 변함 없음<br>
+            event.currentTarget(==this) : 현재 실행 중인 핸들러가 할당 된 요소를 의미
+            이벤트 객체의 메소드 event.stopPropagation() 을 사용하면 버블링 중단을 명령함<br>
+            버블링은 꼭 필요한 경우를 제외하고는 막지 않음
+    </p>
+   <div class="div-test div1" onclick="bubble(event);">
+        <div class="div-test div2 " onclick="bubble(event);">
+            <div class="div-test div3" onclick="bubble(event);">
+                <div class="div-test div4" onclick="bubble(event);">
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function bubble(event){
+            console.log('event.target');
+            console.log(event.target);
+            console.log('event.currentTarget');
+            console.log(event.currentTarget);
+            console.log('----------------------------');
+            event.stopPropagation();
+        }
+    </script>
+
+    <h3>이벤트 캡쳐링</h3>
+    <p>
+        캡쳐링 : 이벤트가 하위 요소로 전파<br>
+        버블링 : 이벤트가 상위 요소로 전파<br>
+        캡처링 단계에서 이벤트를 잡아내려면 addEventListener의 capture 옵션을 true로 설정<br>
+        많이 사용하는 속성은 아님
+    </p>
+
+    <div class="div-test div1">
+        <div class="div-test div2">
+            <div class="div-test div3">
+                <div class="div-test div4">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let divs = document.querySelectorAll(".div-test");
+        for(let i = divs.length - 4; i<divs.length; i++){
+            divs[i].addEventListener('click', e => alert('캡처링 : '+divs[i].className), true);
+            divs[i].addEventListener('click', e => alert('버블링 : '+divs[i].className)); // false 디폴트
+
+        }
+    </script>
+
+    <h3>기본 이벤트의 제거</h3>
+    <p>
+        기본 이벤트란<br>
+        - a 태그를 통한 페이지 이동<br>
+        - submit 시 입력 양식 제출 후 페이지 갱신<br>
+        등의 브라우저 기본 동작을 말함<br>
+
+        태그에 기본적으로 설정되어 있는 이벤트를 제거하는 방법은<br>
+        1. event.preventDefault()<br>
+        2. onevent를 통해 할당 된 이벤트 핸들러의 return 값을 false로 반환
+    </p>
+    <a href="/" onclick="event.preventDefault()">클릭해도 절대 이동할 수 없는 a 태그</a>
+    
+    <form onsubmit="return invalidate();">
+        <label>비밀번호 : </label>
+        <input type="password" name="password" id="password" required>
+        <br>
+        <label>비밀번호 확인 : </label>
+        <input type="password" name="pwdCheck" id="pwdCheck" required>
+        <input type="submit" value="제출">
+    </form>
+    <script>
+        function invalidate(){
+            let password = document.getElementById('password').value;
+            let pwdCheck = document.getElementById('pwdCheck').value;
+            if(password==pwdCheck){
+                alert('비밀번호가 일치합니다.');
+
+            } else{
+                alert('비밀번호가 일치하지 않습니다');
+                return false;
+            }
+        }
+    </script>
+
+
+</body>
+</html>

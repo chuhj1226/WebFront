@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>06_함수</title>
+
+</head>
+<body>
+    <h1>함수(Function)</h1>
+    <h3>함수 선언(Function Declaration)과 호출</h3>
+    <script>
+        // function 키워드와 함수명 매개변수 작성
+        function test1() {
+            // 함수 본문 작성
+            alert('test1 함수 실행!');
+        }
+
+        // 선언 된 함수 호출
+        // test1();
+    </script>
+
+    <h3>변수 범위</h3>
+    <script>
+        function test2() {
+            // 함수 안의 지역 변수 선언
+            let local = 'local';
+        }
+
+        // console.log('test2 밖의 local : ' + local);
+        // local is not defined => 지역 변수 함수 외부에서 접근 불가
+
+        // 외부 변수 선언
+        let outer = 'outer';
+
+        function test3(){
+            // 함수 내부에서 외부 변수 접근
+            console.log('test3만의 outer : ' + outer);
+            outer = 'changed outer';
+        }
+
+        test3();
+        // 접근 뿐 아니라 수정도 가능
+        console.log('test3 호출 후 outer : ' + outer);
+
+        let test = 'outer';
+        function test4(){
+            let test = 'local';
+            console.log('test4 안의 test : '+test);
+        }
+
+        test4();
+        console.log('test4 밖의 test : '+test);
+
+    </script>
+    
+    <h3>함수의 매개변수</h3>
+    <script>
+        function test5(value = 'no value'){
+            console.log('입력 된 메세지 : '+value);
+
+        }
+
+        // 정상 호출
+        // test5(prompt('메세지를 입력하세요.'));
+
+        // 지정 된 매개변수보다 많은 개수 호출하는 것을 허용
+        // 단, 초과 된 매개변수는 무시
+        test5('안녕하세요', '반갑습니다');
+
+        // 지정 된 매개변수보다 적게 호출하는 것도 허용
+        // 단, 선언이 안 된 매개변수는 undefined로 자동 설정
+        // 기본 값 설정도 가능함
+        // test5();
+    </script>
+
+    <h3>함수의 반환형</h3>
+    <script>
+        // 1 ~ 100 사이의 랜덤 값 반환하는 함수
+        function returnFunction() {
+            return Math.floor(Math.random() * 100) + 1
+        }
+
+        function test6(){
+            for(let i = 1; i <= 10; i++){
+                let random = returnFunction();
+                console.log('random'+i+" : "+random);
+            }
+        }
+
+        // console.log(test6());
+        // * return 문이 없거나 return 지시자만 있는 함수는 undefined를 반환
+        
+
+    </script>
+
+    <h3>함수 표현식(Fuction Expression)</h3>
+    <script>
+        // 함수를 생성하고 변수에 값을 할당하는 것처럼 함수가 변수에 할당 됨
+        // => 자바스크립트에서 함수는 값
+        let test7 = function(){
+            alert('함수 표현식!');
+        };
+
+        console.log(test7);
+        
+        // 함수 호출 시 ()
+        // test7();
+
+        // 함수 복사
+        let copy = test7;
+        // 복사한 함수 호출
+        // copy();
+    </script>
+
+    <h3>콜백 함수</h3>
+    <script>
+        function question1(){
+            return prompt('당신의 이름은 무엇입니까?');
+        }
+
+        function question2(){
+            return prompt('당신의 나이는 몇 살입니까?');
+        }
+
+        function test8(func1, func2) {
+            let name = func1();
+            let age = func2();
+            console.log('이름 : '+name+", 나이 : "+age);
+        }
+
+        // 함수 question1, question2가 test8 함수의 인수로 전달
+        // test8(question1, question2);
+
+        // 함수 표현식을 사용한다면?
+        // test8(function(){ return prompt('당신의 이름은 무엇입니까?');},function(){ return prompt('당신의 나이는 몇 살입니까?');});
+
+    </script>
+
+    <h3>함수 선언문과 함수 표현식의 차이</h3>
+    <script>
+        // 선언문 위에서도 호출 가능
+        // 전역 함수는 스크립트 실행 전 초기화 단계에서 생성 되고
+        // 실행문은 함수 선언언문이 모두 처리된 후에 실행 됨
+        // => 스크립트 내 어디서든 호출 가능함
+        test9();
+
+        // 함수 선언문
+        function test9 () {
+            alert('함수 선언문으로 선언 된 함수!');
+        }
+
+        // 함수 표현식으로 생성 된 함수는 스크립트 실행 흐름이 진행 될 때
+        // 생성되므로 아직 생성 되지 않아 호출 불가
+        // test10();
+
+        let test10 = function() {
+            alert('함수 표현식으로 생성 된 함수!');
+        }
+    </script>
+
+    <h3>화살표 함수</h3>
+    <p>
+        화살표 함수는 function 키워드,
+        retunr 키워드 및 중괄호를 생략한 함수 표현식 작성을 위한 짧은 구문을 허용함
+    </p>
+    <script>
+        let hello;
+
+        // 기존 function 정의
+        hello = function() {
+            return "Hello world!";
+        }
+
+        console.log(hello());
+
+        // function 키워드 생략
+        hello = () => {
+            return "Hello wolrd!";
+        }
+
+        console.log(hello());
+
+        // return 키워드, 중괄호 생략
+        // (단, 명령문이 하나만 있는 경우)
+        hello = () => "Hello world!";
+        console.log(hello());
+
+        // 매개변수가 있을 경우
+        hello = (val, val2) => "Hello" +val + val2;
+        console.log(hello('world','!'));
+        console.log(hello('everyone', '?'));
+
+        // 매개변수가 하나면 소괄호 생략 가능
+        hello = val => "hello" +val;
+        console.log(hello('world!'));
+        console.log(hello('everyone?'));
+
+    </script>
+
+</body>
+</html>

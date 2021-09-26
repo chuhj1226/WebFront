@@ -1,0 +1,98 @@
+/* font-family 속성 */
+#ff1 {
+    font-family: "궁서체";
+}
+
+#ff2 {
+    font-family: "돋움체";
+} 
+
+#ff3 {
+    font-family: "없는글꼴", "굴림체";
+}
+
+#web-font {
+    font-family: 'Allison', cursive;
+}
+
+/* font-size 속성 */
+#size1 {
+    font-size: 30px;
+}
+
+#size2 {
+    font-size: 2em;
+}
+
+#size3 {
+    font-size: 150%;
+}
+
+/* 부모 요소 ul의 크기 변경 */
+#size4 {
+    font-size: 200%;
+}
+
+/* 고정크기 px의 경우 위의 ul과 다르지 않음 */
+#size5 {
+    font-size: 30px;
+}
+
+/* 부모 요소의 2배 */
+#size6 {
+    font-size: 2em;
+}
+
+#size7 {
+    font-size: 150%;
+}
+
+/* font-weight 속성 */
+#fw1 {
+    font-weight: bold;
+}
+
+#fw2 {
+    font-weight: lighter;
+}
+
+#fw3 {
+    font-weight: bolder;
+}
+
+#fw4 {
+    font-weight: 900;
+}
+
+/* font-variant 속성 */
+#fv {
+    font-variant: small-caps;
+}
+
+/* font-style 속성 */
+#fs1 {
+    font-style: italic;
+}
+
+#fs2 {
+    font-style: oblique;
+}
+
+/* font 속성 */
+#f1 {
+    font : 16px/25px "궁서체";
+}
+
+#f2 {
+    font : italic bold 20px/20px "고딕체";
+}
+
+
+
+
+
+
+
+
+
+
