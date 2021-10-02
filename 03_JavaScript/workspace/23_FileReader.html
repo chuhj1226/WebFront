@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23_FileReader</title>
+    <style>
+        #txtArea, #imgArea {
+            border : 1px solid lightgray;
+            min-height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h1>File API</h1>
+    <p>
+        FileReader 객체는 File 또는 Blob 객체를 이용해 내용을 읽고
+        사용자의 컴퓨터에 저장하는 것을 가능하게 함<br>
+        File 객체는 input 태그를 이용하여 유저가 선택한 파일들의 결과로 반환 된 FIleList 객체,
+        Drag and Drop으로 반환 된 DataTransfer 객체 등으로부터 얻음
+    </p>
+
+    <h3>텍스트 파일 프리뷰</h3>
+    <input type="file" id="txtfile">
+    <pre id="txtArea">텍스트 파일 내용 출력 영역</pre>
+    <script>
+        // input type file 태그에 변화가 있을 때 (파일 첨부가 되었을 때)
+        document.getElementById('txtfile').addEventListener('change',function(){
+            console.log(this);
+            console.log(this.files);
+            console.log(this.files[0]);
+
+            // 만약 txtfile에 파일이 존재한다면
+            if(this.files && this.files[0]){
+
+                // FileReader 객체 생성
+                let reader = new FileReader();
+
+                // 읽어들이기에 성공했을 때 호출 되는 이벤트 핸들러
+                reader.onload = function(){
+                    // result : 파일의 컨텐츠
+                    console.log(reader.result);
+                    // preview에 읽어온 텍스트 넣기
+                    document.getElementById('txtArea').innerHTML = reader.result;
+                };
+
+                // 텍스트 파일로 읽기 설정하여 파일 읽기
+                reader.readAsText(this.files[0]);
+            }
+        });
+        
+    </script>
+
+    <h3>이미지 파일 프리뷰</h3>
+    <input type="file" id="imgfile">
+    <div id="imgArea"></div>
+    <script>
+        // imgfile에 파일이 첨부 되었을 때
+        document.getElementById('imgfile').addEventListener('change',function(){
+            // 만약 파일이 존재한다면
+            if(this.files && this.files[0]){
+                // FileReader 객체 생성
+                let reader = new FileReader();
+
+                // 읽어들이기에 성공 했을 때 호출 되는 이벤트 핸들러
+                reader.onload = function(){
+                    // result : 파일의 컨텐츠
+                    console.log(reader.result);
+                    // div에 이미지 넣기
+                    document.getElementById('imgArea').innerHTML = '<img src="'+reader.result+'">';
+                };
+
+                // dataURL 형식의 문자열로 읽어오기
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+    </script>
+    <h3>텍스트 파일로 다운로드</h3>
+    <textarea id="txt" cols="100" rows="10" style="resize: none;"></textarea>
+    <br>
+    <button id="text1">텍스트 파일 다운로드</button>
+    <script>
+        document.getElementById('text1').addEventListener('click',function(){
+            // a 태그의 download 속성은 클릭 시 href 속성의 리소스를 다운로드 하게 함
+            let link = document.createElement("a"); // a태그 생성
+            link.download = 'txtfile.txt';          // download 속성
+
+            // Blob(Binary Large Object) : 이미지, 사운드, 비디오와 같은 멀티미디어 데이터를 다루는 객체
+            // File 객체는 Blob 객체를 상속한다
+            // textarea에 작성 된 문자열을 text 타입으로 하여 blob 객체 설정
+            // new Blob([문자열 또는 이전 데이터], option)
+            let blob = new Blob([document.getElementById('txt').value], {type:'text/plain'});
+
+            // FileReader 객체 생성
+            let reader = new FileReader();
+
+            // blob을 base64로 변환하여 읽기
+            // 8비트 이진 데이터를 64진법으로 변환하는 인코딩 기법
+            reader.readAsDataURL(blob);
+
+            // 읽어들이기에 성공했을 때 호출 되는 이벤트 핸들러
+            reader.onload = function(){
+                // a 태그의 href 속성에 읽어온 data url 설정
+                link.href = reader.result;
+                // 링크 클릭 -> 자동 다운로드
+                link.click();
+            };
+
+
+        });
+    </script>
+</body>
+</html>

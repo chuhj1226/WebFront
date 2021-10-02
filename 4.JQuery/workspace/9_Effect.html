@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9_Effect</title>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <style>
+        .outer { width: 600px;}
+
+        .menu {
+            width: 100%;
+            height: 30px;
+            background-color: #53a2f9;
+            color: #fff;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+            padding: 5px;
+            margin: 5px auto;
+        }
+
+        p.content {
+            width: 90%;
+            height: 200px;
+            margin: auto;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>시각적 효과</h1>
+    <p>
+        Effect 메소드 : 페이지에 애니메이션 효과를 만들기 위한 메소드
+    </p>
+    <pre>
+    $('selector').메소드명([speed],[easing],[callback])
+    speed : 실행 속도(ms) / 숫자 or slow, fast
+    easing : 변경 되는 지점별 속도 / linear, swing
+    callback : 메소드 실행 후 실행할 함수
+    </pre>
+
+    <h3>show, hide</h3>
+    <p>
+        문서 객체를 크게하며 보여주거나 작게하며 사라지게 한다
+    </p>
+    <button id="show">보여주기</button>
+    <button id="hide">숨기기</button>
+    <img id="river" src="resources/images/river1.PNG"><br>
+    <script>
+        $(function(){
+            $("#show").click(function(){
+                $("#river").show(1000);
+
+            });
+            $("#hide").click(function(){
+                $("#river").hide(1000);
+            });
+        });
+    </script>
+
+    <button id="toggle">토글하기</button>
+    <img id="dog" src="resources/images/sibadog.gif">
+    <script>
+        $(function(){
+            $("#toggle").click(function(){
+
+                // if($("#dog").css("display")=='none'){
+                //     $("#dog").show(1000);
+                // }else{
+                //     $("#dog").hide(1000);
+                // }
+
+                $("#dog").toggle(1000);
+            })
+        })
+    </script>
+
+    <h3>slideUP, slideDown</h3>
+    <div class="outer">
+        <div class="menu">첫 번째 메뉴</div>
+        <p class="content">첫 번째 메뉴에 대한 콘텐츠 영역입니다.</p>
+    </div>
+    <div class="outer">
+        <div class="menu">두 번째 메뉴</div>
+        <p class="content">두 번째 메뉴에 대한 콘텐츠 영역입니다.</p>
+    </div>
+    <div class="outer">
+        <div class="menu">세 번째 메뉴</div>
+        <p class="content">세 번째 메뉴에 대한 콘텐츠 영역입니다.</p>
+    </div>
+    <div class="outer">
+        <div class="menu">네 번째 메뉴</div>
+        <p class="content">네 번째 메뉴에 대한 콘텐츠 영역입니다.</p>
+    </div>
+    <div class="outer">
+        <div class="menu">다섯 번째 메뉴</div>
+        <p class="content">다섯 번째 메뉴에 대한 콘텐츠 영역입니다.</p>
+    </div>
+
+    <script>
+        $(".menu").click(function(){
+            if($(this).next("p").css("display")=="none"){
+                $("p.content").slideUp();
+                $(this).next("p").slideDown();
+            }else{
+                $(this).next("p").slideUp();
+            }
+        })
+    </script>
+
+    <h3>fade 메소드</h3>
+    <pre>
+    fadeIn : 점점 진하게 변하면서 보여지는 효과
+    fadeOut : 점점 희미하게 변하면서 사라지는 효과
+    fadeTo : 설정 값까지 희미해지는 효과 (opacity 값으로 투명도 설정)
+    fadeToggle : fadeIn과 fadeOut을 동시에 적용
+    </pre>
+    
+    <button id="fadein">fadeIn</button>
+    <button id="fadeout">fadeOut</button>
+    <img id="diningtable" src="resources/images/diningtable.gif"><br>
+    <button id="fadeToggle">fadeToggle</button><br>
+    <img id="cute" src="resources/images/cute1.gif">
+    <img id="flower" src="resources/images/flower1.PNG">
+
+    <script>
+        $("#fadein").click(function(){
+            $("#diningtable").fadeIn(1000);
+        })
+        $("#fadeout").click(function(){
+            $("#diningtable").fadeOut(1000);
+        })
+
+        $("#fadeToggle").click(function(){
+            $("#cute").fadeToggle(1000, function(){
+                alert('토글 완료!');
+            });
+        });
+
+        $("#flower").hover(function(){
+            $("#flower").fadeTo(1000,0.5);
+        },function(){
+            $("#flower").fadeTo(1000,1);
+        });
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>

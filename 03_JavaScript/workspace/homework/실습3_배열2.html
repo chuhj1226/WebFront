@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실습3_배열</title>
+</head>
+
+<body>
+
+    <h3>문제 4</h3>
+    <p>
+        아래 선언 된 변수를 매개변수로 전달 받았을 때 alert 창으로 "loveyou"가 출력 되게 하는
+        reverseWords 함수를 정의하여 호출 테스트한다. <br>
+        별도의 문자열을 사용하면 안되며 배열에서 학습한 메소드를 활용하여 작성한다.
+    </p>
+    <!-- <script>
+        let str1 = 'e v o l';
+        let str2 = 'u o y';
+
+        function reverseWords(love,you) {
+            let arr = str1.split(' ');
+            arr.reverse();
+            let arr2 = str2.split(' ');
+            arr2.reverse();
+            let str = arr.join("")+arr2.join("");
+      
+            alert(str);
+
+        }
+
+        reverseWords(str1, str2); -->
+
+
+    </script>
+
+    <h3>문제 5</h3>
+    <p>
+        아래 선언 된 변수를 "," 기준으로 분리하여 선언 된 순서대로 하나의 배열로 결합한다.<br>
+
+        prompt로 사용자에게 입력 받은 값이 해당 배열에 존재하면
+        alert를 통하여 배열 내 위치를 출력하고
+        존재하지 않으면 alert로 존재하지 않습니다를 출력하는 findWord 함수를 완성한다.<br>
+        단, prompt 창에서 취소 또는 입력 값 없이 확인을 눌렀을 경우는
+        결과를 확인할 수 없습니다를 alert를 통하여 출력한다.
+    </p>
+    <p>
+        Ex. 사용자 prompt 입력 값 : 사과, alert 결과 값 : 사과는 배열 index 0번째에 있습니다.<br>
+        Ex. 사용자 prompt 입력 값 : 강아지, alert 결과 값 : 강아지는 배열 index 11번째에 있습니다.<br>
+        Ex. 사용자 prompt 입력 값 : 햄스터, alert 결과 값 : 햄스터는 배열에 존재하지 않습니다.<br>
+        Ex. 사용자 prompt 입력 시 취소 또는 빈칸 입력, alert 결과 값 : 결과를 확인할 수 없습니다.
+    </p>
+    <script>
+        let str3 = '사과,바나나,당근';
+        let str4 = '김밥,치즈,떡볶이,햄버거';
+        let str5 = '환타,사이다,콜라';
+        let str6 = '고양이,강아지';
+
+        let arr1 = str3.split(',');
+        let arr2 = str4.split(',');
+        let arr3 = str5.split(',');
+        let arr4 = str6.split(',');
+
+        let arrs = arr1.concat(arr2,arr3,arr4);
+        console.log(arrs);
+
+        function findWord(word) {
+
+            if(arrs.includes(word)) {
+                alert(word+'는 배열 index '+arrs.indexOf(word)+'번째에 있습니다.');
+            }else if(word==''||word==null) {
+                alert('결과를 확인할 수 없습니다.')
+            }else {
+                alert(word+'는 배열에 존재하지 않습니다.');
+            }
+
+        }
+
+        findWord(prompt("당신이 찾는 단어는 무엇인가요?"));
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>24_DragAndDrop</title>
+    <style>
+        .image{
+            width: 200px;
+            height: 150px;
+        }
+        .div {
+            width: 500px;
+            min-height: 200px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Drag And Drop</h1>
+    <p>
+        마우스를 이용하여 파일이나 데이터를 애플리케이션 간에 전달하는 기능<br>
+        특히 웹 애플리케이션에서는 화면 상에 나타나는 요소를 옮기거나
+        웹 브라우저와 다른 웹브라우저 간의 자료를 전달하기 위해 사용<br><br>
+
+        끌기 할 요소에 draggable 속성과 끌기 관련 이벤트인 dragstart, dragend, drag 이벤트 처리<br>
+
+        놓기 영역 요소에는 dragenter, dragover, dragleave 이벤트 처리<br>
+        (놓기 영역에 요소를 끌어다 놓을 경우 drop 이벤트 발생)
+    </p>
+    <h2>끌기 이벤트</h2>
+    <pre>
+    - dragstart : 요소를 끌기 시작했을 때 발생
+    - drag : 요소를 끌기 도중에 발생
+    - dragend : 요소를 끌기 끝났을 때 발생
+    </pre>
+
+    <div id="imgs">
+        <img id="img1" class="image" src='resources/images/pikachu.png' draggable="false">
+        <img id="img2" class="image" src='resources/images/pikachu.png' draggable="true">
+    </div>
+
+    <div id="div1" class="div"></div>
+    <script>
+        // img 2개를 감싸는 div
+        let src = document.getElementById('imgs');
+
+        // 출력 확인용 div
+        let result = document.getElementById('div1');
+        // drag를 하고 있으면 계속 drag 이벤트가 호출 되므로
+        // 이를 막기 위해 한 번만 호출되게끔 컨트롤 할 변수 선언
+        let isDragging;
+
+        src.ondragstart = function(){
+            result.insertAdjacentHTML('beforeend','dragstart : '+event.target.id+'<br>');
+            isDragging = false;
+        };
+
+        src.ondrag = function(){
+            if(!isDragging){
+                result.insertAdjacentHTML('beforeend','drag : '+event.target.id+'<br>');
+                isDragging = true;
+            }
+
+        };
+
+        src.ondragend = function(){
+            result.insertAdjacentHTML('beforeend','dragend : '+event.target.id+'<br>');
+        };
+        
+    </script>
+    <h2>놓기 이벤트</h2>
+    <pre>
+    - dragenter : 끌기한 요소가 놓기 영역으로 들어왔을 때 발생
+    - dragover : 끌기한 요소가 놓기 영역에 있을 때 발생
+    - dragleave : 끌기한 요소가 놓기 영역을 떠날 때 발생
+    - drop : 끌기한 요소를 놓기할 때 발생
+    </pre>
+    <img id="img3" class="image" src="resources/images/pikachu.png" draggable="true">
+    <div id="div2" class="div"></div>
+    <script>
+        // 올려 놓을 대상 div & 출력 대상 div
+        let target = document.getElementById('div2');
+        // dragover를 하고 있으면 계속 dragover 이벤트가 호출되므로
+        // 이를 막기 위한 변수 선언
+        let isDraggingOver;
+
+        target.ondragenter = function(){
+            target.insertAdjacentHTML('beforeend','dragenter : '+ event.target.id + '<br>');
+            isDraggingOver = false;
+        };
+
+        target.ondragover = function(){
+            // HTML 요소들의 기본 값은 드롭을 받아들이지 않게 되어 있음
+            // 따라서 드롭이 가능하도록 설정하려면 이벤트의 preventDefault 메소드 호출해야 함
+            // 이 코드가 없으면 놓기 했을 때 drop 대신 laever가 동작함
+            event.preventDefault();
+
+            if(!isDraggingOver){
+                target.insertAdjacentHTML('beforeend','dragover : '+ event.target.id + '<br>');
+                isDraggingOver = true;
+            }
+            
+        };
+
+        target.ondragleave = function(){
+            target.insertAdjacentHTML('beforeend','dragleave :'+event.target.id+'<br>');
+        };
+
+        target.ondrop = function(){
+            target.insertAdjacentHTML('beforeend','drop :'+event.target.id+'<br>');
+        };
+
+    </script>
+
+    <h3>File Drag And Drop</h3>
+    <div id="dropbox" class="div">
+        <span id="droplabel">
+            파일을 여기에 올려 놓으세요
+        </span>
+        <br>
+        <a id="download" href="#">download file</a>
+    </div>
+    <script>
+        // 놓기 이벤트 대상 div
+        let dropbox = document.getElementById('dropbox');
+
+        // 이벤트 핸들러 할당
+        dropbox.addEventListener('dragover', ()=> event.preventDefault());
+        dropbox.addEventListener('drop',drop);
+
+        function drop(event){
+            // 파일 drop이 일어나면 브라우저 새 창으로 뜨는 것 방지
+            event.preventDefault();
+
+            let files = event.dataTransfer.files;
+            let count = files.length;
+            console.log(files);
+            console.log(count);
+
+            // 1개 이상의 파일이 전달 되었을 대만 수행
+            if(count>0)
+                handleFiles(files[0]);
+        }
+        function handleFiles(file){
+            // FileReader 객체 생성
+            let reader = new FileReader();
+            // 파일명으로 span 태그 내용 변경
+            document.getElementById('droplabel').innerHTML = file.name;
+
+            // 파일을 다 읽어 왔을 때 수행 할 이벤트 핸들러 정의
+            reader.onload = function(){
+                let a = document.getElementById('download');
+                a.download = file.name;
+                a.href = reader.result;
+            };
+
+            // DataURL 타입으로 파일 읽어오기
+            reader.readAsDataURL(file);
+        }
+
+    </script>
+</body>
+</html>

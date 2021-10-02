@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실습1_기본문법</title>
+</head>
+<body>
+    <h1>실습1_기본문법</h1>
+
+    <h3>문제 1</h3>
+    <p>
+        prompt로 "당신의 등급은 무엇입니까?" 라는 질문의 답을 받고 (기본 값 : 손님)
+        "손님"의 경우 "글 읽기", 
+        "일반 회원"의 경우 "글 읽기, 글 쓰기",
+        "운영자"의 경우 "글 읽기, 글 쓰기, 글 삭제" 
+        라는 값을 변수에 저장하여 아래와 같이 alert로 출력한다.<br>
+
+        Ex. 운영자의 경우 글 읽기, 글 쓰기, 글 삭제가 가능합니다.<br>
+        if문 사용 시, 삼항 연산자 사용 시의 코드 모두 작성하고 테스트 한다.
+    </p>
+<!-- <script>
+    let grade = prompt('당신의 등급은 무엇입니까?');
+    let str;
+    if(grade == '손님') {
+        str = "글 읽기";
+    } else if (grade == '일반회원'){
+        str = "글 읽기, 글 쓰기"
+    } else if (grade == '운영자'){
+        str = "글 읽기, 글 쓰기, 글 삭제"
+    }
+    alert(grade+'의 경우 '+str+'가 가능합니다.'); -->
+
+
+</script>
+
+    <h3>문제 2</h3>
+    <p>
+        아래 script를 switch문으로 변환한다. 
+    </p>
+    <!-- <script>
+        let browser = prompt('어떤 브라우저를 사용하고 계신가요?', 'Chrome');
+
+        if (browser == 'Edge') {
+            alert("Edge를 사용하고 계시네요!");
+        } else if (browser == 'Chrome'
+            || browser == 'Firefox'
+            || browser == 'Safari'
+            || browser == 'Opera') {
+            alert('저희 서비스가 지원하는 브라우저를 사용하고 계시네요.');
+        } else {
+            alert('현재 페이지가 괜찮아 보이길 바랍니다!');
+        }
+    </script> -->
+
+    <!-- <script>
+         let browser = prompt('어떤 브라우저를 사용하고 계신가요?', 'Chrome');
+
+         switch(browser) {
+             case 'Edge' : alert('Edge를 사용하고 계시네요!'); break;
+             case 'Chrome' : alert('저희 서비스가 지원하는 브라우저를 사용하고 계시네요.'); break;
+             case 'Firefox' : alert('저희 서비스가 지원하는 브라우저를 사용하고 계시네요.'); break;
+             case 'Safari' : alert('저희 서비스가 지원하는 브라우저를 사용하고 계시네요.'); break;
+             case 'Opera' : alert('저희 서비스가 지원하는 브라우저를 사용하고 계시네요.'); break;
+             default : alert('현재 페이지가 괜찮아 보이길 바랍니다.');   }
+    </script>
+ -->
+
+    <h3>문제 3</h3>
+    <p>
+        아래의 for문을 while문으로 변경한다.
+    </p>
+    <!-- <script>
+        let number = prompt("반복할 횟수 입력해주세요");
+
+        for (let i = 0; i < number; i++) {
+            console.log('number' + (i+1));
+        }
+    </script> -->
+
+    <!-- <script>
+        let number = prompt("반복할 횟수 입력해주세요");
+        let i = 0;
+        while(i < number) {
+            console.log('number' + (i+1));
+            i++;
+        }
+    </script> -->
+
+    <h3>문제 4</h3>
+    <p>
+        "반드시 짝수를 입력하세요" 라는 prompt 출력 후
+        사용자가 짝수가 아닌 값을 입력한 경우 반복문을 사용해 동일한 prompt 창 출력한다.
+        사용자가 짝수를 입력하거나 취소 버튼을 누른 경우, 
+        혹은 아무것도 입력하지 않고 확인 버튼을 누른 경우엔 prompt 창 출력을 반복하지 않고
+        입력 받은 값 console로 출력한다.
+    </p>
+    <script>
+        while(true) {
+            let num = prompt('반드시 짝수를 입력하세요');
+            if(num % 2 == 0) {
+                console.log(num);
+                break;
+            }
+
+        }
+    </script>
+</body>
+</html>

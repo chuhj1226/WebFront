@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>22_Web Storage</title>
+</head>
+<body>
+    <h1>Web Storage</h1>
+    <p>
+        HTML5 이전에는 응용 프로그램이 데이터를 서버에게 요청할 때 마다 쿠키(cookie)에 정보를 저장함<br>
+        웹 스토리지는 최소 5MB 이상의 공간을 가지고 있으며, 이 정보는 절대 서버로 전송 되지 않아
+        <b>사용자 촉에서 좀 더 많은 양의 정보를 안전하게 저장</b>할 수 있도록 해줌
+    </p>
+    <h3>웹 스토리지 종류</h3>
+    <p>
+        - localStorage : 보관 기한이 없는 데이터를 저장한다<br>
+        브라우저 탭이나 창이 닫히거나, 컴퓨터를 재부팅해도 저장 된 데이터는 없어지지 않는다<br>
+        - sessionStorage : 하나의 세션(session)만을 위한 데이터를 저장한다<br>
+        사용자가 브라우저 탭이나 창을 닫으면 이 객체에 저장 된 데이터는 사라진다
+    </p>
+    <script>
+        // 키-값 쌍을 보관
+        // localStorage setItem
+        localStorage.academy = 'KH정보교육원';
+        localStorage['class'] = 'L오후';
+        localStorage.setItem('teacher','우별림');
+
+        // 키에 해당하는 값을 받아옴
+        // localStorage getItem
+        console.log('localStorage academy : '+localStorage.academy);
+        console.log('localStorage class : ' + localStorage['class']);
+        console.log('localStorage teacher : '+localStorage.getItem('teacher'));
+
+        // sessionStorage도 동일하게 다룸
+        // sessionStorage setItem
+        sessionStorage.loginUser ='우별림';
+        sessionStorage['userid'] = 'byeollim';
+        sessionStorage.setItem('loginDate',new Date());
+
+        // sessionStorage getItem
+        console.log("sessionStorage.loginUser : "+sessionStorage.loginUser);
+        console.log("sessionStorage userid : "+sessionStorage['userid']);
+        console.log("sessionStorage loginDate : "+sessionStorage.getItem('loginDate'));
+    </script>
+
+    <button id="removeItem">일부 데이터 삭제</button>
+    <button id="clearItem">전체 데이터 삭제</button>
+    <script>
+        document.getElementById('removeItem').addEventListener('click',function(){
+            localStorage.removeItem('class');
+            sessionStorage.removeItem('userid');
+        });
+        document.getElementById('clearItem').addEventListener('click',function(){
+            localStorage.clear();
+            sessionStorage.clear();
+        });
+
+    </script>
+
+    <h3>Storage 이벤트</h3>
+    <p>
+        localStorage나 sessionStorage의 데이터가 갱신 될 때, storage 이벤트 실행<br>
+        storage 이벤트는 이벤트를 발생 시킨 스토리지를 제외하고 스토리지에서 접근 가능한
+        window 객체 전부에서 일어남<br>
+        즉, 두개의 창에 같은 사이트를 띄워놓았을 때 창은 다르지만 localStorage는 서로 공유 됨<br>
+        한 창에서 데이터를 갱신하면 다른 창에 해당 사항이 반영
+    </p>
+    <h3>storage 이벤트 속성</h3>
+    <ul>
+        <li>key : 변경 된 데이터의 키(.clear()를 호출했다면 null)</li>
+        <li>oldValue : 이전 값(키가 새롭게 추가 되었다면 null)</li>
+        <li>newValue : 새로운 값(키가 삭제 되었다면 null)</li>
+        <li>url : 갱신이 일어난 문서의 url</li>
+        <li>storageArea : 갱신이 일어난 localStorage나 sessionStorage 객체</li>
+    </ul>
+    <button id="sendMsg">다른 창으로 메세지 보내기</button>
+    <script>
+        window.addEventListener('storage', ()=> {
+            alert(event.key + " : "+event.newValue + " at "+event.url + " = "+"\n oldValue : "+event.oldValue);
+        });
+
+        document.getElementById('sendMsg').addEventListener('click', ()=>{
+            localStorage.setItem('msg',"다른 창에서 메세지를 보냈어요");
+        });
+
+    </script>
+</body>
+</html>

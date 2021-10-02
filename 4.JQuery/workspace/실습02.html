@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02-1</title>
+    <script src="js/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <!-- 1번 -->
+    <!-- <input type="checkbox" name="check" value="1"/> 1번
+    <input type="checkbox" name="check" value="2"/> 2번
+    <input type="checkbox" name="check" value="3"/> 3번
+    <input type="checkbox" name="check" value="4"/> 4번
+    <br />
+    <input type="button" value="체크 버튼 확인" onclick="checkBtn()"/>
+
+    <script>
+
+        function checkBtn(){
+
+            if($('input[value=1]').prop('checked')){
+                console.log('1번')
+            }
+             if($('input[value=2]').prop('checked')){
+                console.log('2번')
+            }
+            if($('input[value=3]').prop('checked')){
+                console.log('3번')
+            }
+            if($('input[value=4]').prop('checked')){
+                console.log('4번')
+            }
+            
+        }
+        
+        
+   
+    </script> -->
+
+    <!-- 2번 -->
+
+    <!-- <select>
+        <option value="1" selected="selected">1번</option>
+        <option value="2">2번</option>
+        <option value="3">3번</option>
+    </select>
+    <br>
+    <input type="button" value="Select 버튼 확인" onclick="selectBtn()">
+    <script>
+
+        function selectBtn(){
+            let selectedValue = $("option:selected").text();
+            console.log(selectedValue);
+
+        };
+
+    
+     </script> -->
+
+    <!-- 3번 -->
+
+    <!-- 제목 : <input type="text" name="title" /><br />
+    내용 : <input type="text" name="content" /><br />
+    작성자 : <input type="text" name="owner" /><br />
+    <input type="button" value="테이블에 추가" onclick="add()" />
+    <table border="1">
+        <tr>
+            <td>제목</td>
+            <td>내용</td>
+            <td>작성자</td>
+        </tr>
+
+    </table>
+    <script>
+        html = '';
+        function add(){
+
+           html = '<tr> <td>'+$("input[name=title]").val()+'</td>'
+                +'<td>'+$("input[name=content]").val()+'</td>'
+                +'<td>'+$("input[name=owner]").val()+'</td>'
+                +'</tr>'
+
+            $('tr:last').after(html);
+
+        }
+    </script> -->
+
+    <!-- 4번 -->
+    <div>
+        <input type = "file" />
+        <input type = "button" value="추가" onclick="addFile()" />
+        <input type = "button" value="삭제" onclick="delFile()" />
+    </div>
+    <script>
+        html = '<input type = "file" class = "add"/><br>'
+        function addFile(){
+            $('div').after(html);
+            // $("input:file:first").clone(true).appendTo("div");
+      
+        }
+        function delFile(){
+            if($('input:file')){
+
+                $('.add:last').detach();
+            }
+
+        }
+    </script>
+
+</body>
+</html>

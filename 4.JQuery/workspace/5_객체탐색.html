@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5_객체 탐색</title>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <style>
+        .wrap,
+        .wrap * {
+            border : 1px solid lightgray;
+            display: block;
+            padding : 5px;
+            margin : 15px;
+            color : gray;
+        }
+        .type {
+            width: 500px;
+        }
+    </style>
+</head>
+<body>
+    <h1>필터링 메소드</h1>
+    <p>
+        선택자로 지정한 객체를 기준으로 객체 그룹에서 위치를 통해 객체를 선택하는 메소드
+    </p>
+    <h4 class="test">test-1</h4>
+    <h4 class="test">test-2</h4>
+    <h4 class="test">test-3</h4>
+    <h4 class="test">test-4</h4>
+    <h4>test-5</h4>
+    <h4 class="test">test-6</h4>
+
+    <script>
+        $(document).ready(function(){
+            // filter : 특정 기준과 일치하는 요소를 반환
+            // test 클래스 요소 중 짝수 인덱스 선택
+            $(".test").filter(":even").css({background:"tomato",color:"white"});
+
+            // 함수를 매개변수로 하는 filter 메소드
+            // index : 필터링 되기 전 인덱스 값
+            $(".test").filter(function(index){
+                return index % 2 == 1; // 리턴 결과가 true인 요소만 남음
+            }).css({background:'yellow',color:'white'});
+
+            // 선택 된 요소 중 제일 처음에 있는 요소
+            $("h4").first().css("font-size","1.5em");
+
+            // 선택 된 요소중 제일 마지막에 있는 요소
+            // text : 해당 요소의 텍스트 노드 값 수정
+            $("h4").last().text($("h4").last().text()+" : 마지막 요소 ");
+
+            // 인덱스 번호와 일치하는 요소 
+            $("h4").eq(3).text($("h4").eq(3).text()+" : eq(3) 메소드로 필터링 됨");
+
+            // 인자 값과 일치하지 않는 요소만 리턴
+            $("h4").not(".test").css({background:"pink",color:"white"});
+        });
+    </script>
+
+    <h1>순회(탐색) 메소드</h1>
+    <h3>
+        조상 메소드 : 선택된 요소의 상위 요소들을 선택할 수 있는 메소드
+
+    </h3>
+
+    <pre>
+    $('selector').parent()
+    - 선택 된 요소의 바로 위 상위 요소들을
+    
+    $('selector').parents([매개변수])
+    - 선택 된 요소의 모든 상위 요소 리턴
+    - 매개변수가 있으면 매개변수와 일치하는 부모만 리턴
+
+    $('selector').parentsUntil(매개변수)
+    - 선택 된 요소부터 매개변수 요소까지 범위의 요소 리턴
+    </pre>
+    <div class="wrap test1">
+        <div class="type">div (great-grandparent)
+            <ul>ul (grand parent)
+                <li>li (direct parent)
+                    <span>span</span>
+                </li>
+            </ul>
+        </div>
+        <div class="type">div (grand parent)
+            <p>p (direct parent)
+                <span>span</span>
+            </p>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function(){
+            // parent : 바로 상위 요소 리턴
+            $(".test1 span").parent().css({color:"red",border:"2px solid red"});
+
+            // parents : 모른 상위 요소 리턴
+            // $(".test1 li").parents().css("color","blue");
+            // li 상위요소 중 div만
+            $(".test1 li").parents("div").css("border", "2px dashed magenta");
+
+            // parentsUntil : 상위 요소 중 해당 요소까지
+            $(".test1 span").parentsUntil("div")
+            .css("background", "lightgray");
+        });
+    </script>
+    
+    <h3>
+        자손, 후손 메소드 : 선택 된 요소의 하위 요소들을 선택할 수 있는 메소드
+    </h3>
+    <pre>
+    $('selector').children([매개변수])
+    - 선택 된 요소의 모든 자식 객체 리턴
+    - 매개변수 있으면 매개변수와 일치하는 자식 객체만 리턴
+
+    $('selector').find(매개변수)
+    - 선택 된 요소의 인자와 일치하는 모든 후손 객체 리턴
+
+    </pre>
+    <div class="wrap test2">
+        <div class="type">div (great-grandparent)
+            <ul>ul (grand parent)
+                <li>li (direct parent)
+                    <span>span</span>
+                </li>
+            </ul>
+        </div>
+        <div class="type">div (grand parent)
+            <p>p (direct parent)
+                <span>span</span>
+            </p>
+        </div>
+    </div>
+    <script>
+        let style1 = {color : 'red' , border : '2px solid red'};
+        let style2 = {color : 'blue' , border : '2px solid blue'};
+        let style3 = {color : 'green' , border : '2px solid green'};
+        let style4 = {color : 'orange' , border : '2px solid orange'};
+        let style5 = {color : 'purple' , border : '2px solid purple'};
+
+        // test2 클래스의 자식들
+        $(".test2").children().css(style1);
+
+        // test2 클래스의 자손의 자손 객체들
+        $(".test2").children().children().css(style2);
+
+        // test2 클래스의 자손의 자손 중 ul
+        $(".test2").children().children("ul").css(style3);
+
+        // find : 후손 중 해당하는 객체 리턴
+        $(".test2").find("span").css(style4);
+        $(".test2").find("li").css(style5)
+    </script>
+
+    <h3>
+        형제 메소드 : 같은 레벨이 있는 요소를 선택할 수 있는 메소드
+    </h3>
+    <pre>
+    $('selector').siblings([매개변수])
+    - 선택 된 요소와 같은 레벨에 있는 모든 요소 리턴
+    - 매개변수가 있다면 같은 레벨에 있는 요소 중 매개변수와 일치하는 모든 요소 리턴
+
+    $('selector').next()
+    - 선택 된 요소의 같은 레벨 중 다음 한 개의 요소 리턴
+
+    $('selector').nextAll()
+    - 선택 된 요소의 같은 레벨 중 다음 모든 요소 리턴
+
+    $('selector').nextUntill(매개변수)
+    - 선택 된 요소의 같은 레벨 중 매개변수 이전까지의 모든 요소 리턴(뒤로 탐색)
+
+    $('selector').prev()
+    - 선택 된 요소의 같은 레벨 중 이전 한 개 요소 리턴 
+
+    $('selector').prevAll()
+    - 선택 된 요소의 같은 레벨 중 이전 모든 요소 리턴
+
+    $('selector').prevUntill(매개변수)
+    - 선택 된 요소의 같은 레벨 중 매개변수 이전까지의 모든 요소 리턴(앞으로 탐색)
+
+
+    </pre>
+    <div class="wrap">div (parent)
+        <p>p</p>
+        <span>span</span>
+        <h2>h2</h2>
+        <h3>h3</h3>
+        <p>p</p>
+    </div>
+    <script>
+        // 모든 형제 요소 리턴
+        $(".wrap h2").siblings().css(style1);
+
+        // h2의 형제 중 p 선택
+        $(".wrap h2").siblings("p").css(style2);
+
+        // h2의 바로 다음 요소
+        $(".wrap h2").next().css(style3);
+
+        // h2 뒤에 있는 모든 형제 요소
+        $(".wrap h2").nextAll().css(style4);
+
+        // h2 뒤의 p 이전까지 존재하는 형제 요소
+        $(".wrap h2").nextUntil("p").css("font-size", "3em");
+
+        // h2 바로 이전 요소
+        $(".wrap h2").prev().css(style5);
+
+        // h2 앞에 있는 모든 형제 요소
+        $(".wrap h2").prevAll().css(style4);
+
+        // h2 앞의 p 이전까지 존재하는 형제 요소
+        $(".wrap h2").prevUntil("p").css("border","dotted");
+
+    </script>
+
+</body>
+</html>

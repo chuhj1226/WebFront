@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실습04</title>
+    <script src="js/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <!-- 1번 문제 -->
+    <ul id="number">
+        <li class="n1">1</li>
+        <li class="n2">2</li>
+        <li class="n3">3</li>
+    </ul>
+    <script>
+        $(function(){
+            var len = $('#number').children().length;
+            console.log("length : "+len);
+            $(document).on("mouseenter","#number",function(){
+                $(this).children().each(function(){
+                    console.log($(this).attr("class"));
+                });
+            });
+        });
+    </script>
+
+    <!-- 2번문제 -->
+    <select name="number">
+        <option value="">== 선택 ==</option>
+        <option value="1">1번</option>
+        <option value="2">2번</option>
+        <option value="3">3번</option>
+        <option value="4">4번</option>
+    </select>
+    <span id="selNum"></span>
+
+    <script>
+        $(document).ready(function(){
+            
+        });
+    </script>
+
+    <!-- 3번 문제 -->
+    <!-- <table border="1">
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>조회수</th>
+            <th>작성일자</th>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>3번제목</td>
+            <td>0</td>
+            <td>11-07-13</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>2번제목</td>
+            <td>0</td>
+            <td>11-07-12</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1번제목</td>
+            <td>0</td>
+            <td>11-07-11</td>
+        </tr>
+    </table>
+    선택된 행 :
+    <span id="s1"></span> / <span id="s2"></span>
+    / <span id="s3"></span> / <span id="s4"></span>
+
+    <script>
+        $(document).ready(function() {
+            
+        });
+    </script> -->
+
+    <!-- 4번 문제 -->
+
+    <!-- <script>
+        $(document).ready(function() {
+          
+        });
+    </script> -->
+
+    
+</body>
+</html>

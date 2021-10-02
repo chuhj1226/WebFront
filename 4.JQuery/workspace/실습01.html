@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01-3</title>
+    <script src="js/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+
+    <!-- 1번 -->
+    <h1>text1</h1>
+    <h1 id="text">test2</h1>
+    <h1 name="text">text3</h1>
+    <h1 class="text">text4</h1>
+    <script>
+        $(document).ready(function(){
+            $('h1:first').css("color","red");
+            $('#text').css("color","orange");
+            $('h1[name=text]').css("color","yellow");
+            $('.text').css("color","green");
+
+        })
+    </script>
+
+    <!-- 2번 -->
+    <ol>
+        <li class="first">
+            <h2>1-1</h2>
+        </li>
+        <li class="second">
+            <h2>1-2</h2>
+        </li>
+        <li class="first">
+            <h2>1-3</h2>
+        </li>
+    </ol>
+    <ul>
+        <li class="third">
+            <h2>2-1</h2>
+        </li>
+        <li class="second">
+            <h2>2-2</h2>
+        </li>
+        <li class="third">
+            <h2>2-3</h2>
+        </li>
+    </ul>
+
+    <script>
+        $(document).ready(function () {
+            $('.first:first').css("color","red");
+            $('.second:first').css("color","orange");
+            $('.first:last').css("color","green");
+            $('.third:first').css("color","blue");
+            $('.second:last').css("color","plum");
+            $('.third:last').css("color","purple");
+        
+        });
+    </script>
+
+ <!-- 3번 -->
+    <table border="1">
+        <tr><th>구분</th><th>A</th><th>B</th></tr>
+        <tr><td>가</td><td>10</td><td>10</td></tr>
+        <tr><td>나</td><td>20</td><td>20</td></tr>
+        <tr><td>계</td><td>30</td><td>30</td></tr>
+    </table>
+    <input type="button" value="[가]색 변경" onclick="click1()" />
+    <input type="button" value="[나]색 변경" onclick="click2()" />
+    <input type="button" value="[A]색 변경" onclick="click3()" />
+    <input type="button" value="[B]색 변경" onclick="click4()" />
+
+    <script>
+        function clear() {
+            $("table *").removeAttr("style");
+        }
+        function click1() {
+            clear();
+            $("td:contains('10')").css("color","yellow");
+        }
+        function click2() {
+            clear();
+            $("td:contains('20')").css("color","yellow");
+         }
+        function click3() {
+            clear();
+            $("tr:not(:last-child) td:not(:nth-child(2n-1))").css("color","yellow");
+        }
+        function click4() {
+            clear();
+            $("tr:not(:last-child) td:nth-child(n3)").css("color","yellow");
+         }
+
+    </script>
+    </head>
+
+    <body>

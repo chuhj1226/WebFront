@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>20_cookie</title>
+</head>
+<body>
+    <h1>cookie</h1>
+    <p>
+        cookie : 브라우저에 저장 되는 작은 크기의 문자열로 http 프로토콜의 일부<br>
+        * HTTP(Hypertext Transfer Protocol) : 인터넷 상에서 데이터를 주고 받기 위한 
+        서버/클라이언트 모델을 따르는 프로토콜<br>
+        * 프로토콜 : 상호 간에 정의한 규칙을 의미하며 특정 기기 간에 데이터를 주고 받기 위한 정의<br>
+        쿠키는 주로 웹 서버에 의해 만들어지며 서버가 HTTP 응답 헤더(header)의 Set-Cookie에 내용을
+        넣어 전달하면, 브라우저는 이 내용을 자체적으로 브라우저에 저장함<br>
+        브라우저는 사용자가 쿠키를 생성하도록 한 동일 서버(사이트)에 접속할 때
+        쿠키의 내용을 Cookie 요청 헤더에 넣어서 함께 전달<br>
+        * Web Server : HTTP를 통해 웹 브라우저에게 요청하는 HTML 문서나 오브젝트(이미지 파일 등)을
+        전송해주는 서비스 프로그램<br>
+        쿠키는 클라이언트 식별과 같은 인증에 가장 많이 쓰임<br>
+        사용자가 로그인 하면 서버는 HTTP 응답 헤더의 Set-Cookie에 담긴
+        "세션 식별자(session identifier)" 정보를 사용해 쿠키를 설정<br>
+        사용자가 동일 도메인에 접속하려고 하면 브라우저는 HTTP Cookie 헤더에
+        인증 정보가 담긴 고윳값(세션 식별자)을 함께 실어 서버에 요청을 보냄<br>
+        서버는 브라우저가 보낸 요청 헤더의 세션 식별자를 읽어 사용자를 식별함<br>
+
+        document.cookie 프로퍼티를 이용하면 브라우저에서도 쿠키에 접근할 수 있음
+    </p>
+    <h3>쿠키 읽기</h3>
+    <p>
+        document.cookie는 name=valie 쌍으로 구성되어 있고, 각 쌍은 ;로 구분하며
+        쌍 하나는 하나의 독립 된 쿠키<br>
+        ;를 기준으로 document.cookie의 값을 분리하면 원하는 쿠키를 찾을 수 있음
+        (정규표현식, 배열 관련 함수 사용)
+    </p>
+    <h3>쿠키 쓰기</h3>
+    <p>
+        document.cookie에 직접 값을 쓸 수 있으며
+        document.cookie에 값을 할당하면, 브라우저는 이 값을 받아 해당 쿠키를 갱신<br>
+        다른 쿠키의 값은 변경되지 않음<br>
+        쿠키의 이름과 값엔 특별한 제약이 없기 때문에 모든 글자가 허용되지만
+        형식의 유효성을 일관성 있게 유지하기 위해<br>
+        내장함수 encodeURIComponent를 사용하여 이름과 값을 이스케이프 처리<br>
+        encodeURIComponent로 인코딩한 이후의 name=valie 쌍은 4KB를 넘을 수 없음<br>
+        도메인 하나당 저장할 수 있는 쿠키의 개수는 20개여 정도로 한정(브라우저에 )
+    </p>
+    <button id="test1">쿠키 읽기</button>
+    <button id="test2">쿠키 쓰기</button>
+    <button id="test3">쿠키 갱신</button>
+    <button id="test4">인코딩 처리 쿠키 쓰기</button>
+    <script>
+        document.getElementById('test1').addEventListener('click',function(){
+            console.log(document.cookie);
+        });
+
+        document.getElementById('test2').addEventListener('click',function(){
+            document.cookie = "test=cookie";
+            document.cookie = "user=byeollim";
+            // 세션단위임 -> 브라우저가 꺼지면 종료됨
+        });
+
+        document.getElementById('test3').addEventListener('click',function(){
+            document.cookie = "user=woo";
+        });
+
+        document.getElementById('test4').addEventListener('click',function(){
+            let name = "my name";
+            let value = "Woo Byeollim";
+            document.cookie = encodeURIComponent(name)+ "=" + encodeURIComponent(value);
+        });
+
+    </script>
+
+    <h3>expires, max-age 옵션</h3>
+    <p>
+        expires(유효 일자)나 max-age(만료 기간) 옵션이 지정 되어 있지 않으면,
+        브라우저가 닫힐 때 쿠키도 함께 삭제<br>
+        expires나 max-age 옵션을 설정하면 브라우저를 닫아도 쿠키가 삭제 되지 않음<br>
+        브라우저는 설정 된 유효 일자까지 쿠키를 유지하다가, 해당 일자가 도달하면 쿠키를 자동으로 삭제<br>
+        쿠키의 유효 일자는 반드시 GMT 포맷으로 설정해야 하며 date.toUTCString을 사용하면
+        해당 포맷으로 쉽게 변경 가능<br>
+        max-age 옵션을 사용하면 보다 간편하게 초 단위로 만료 기간 설정 가능
+    </p>
+    <button id="test5">하루 유효 쿠키 쓰기</button>
+    <button id="test6">5초 유효 쿠키 쓰기</button>
+    <script>
+        document.getElementById('test5').addEventListener('click',function(){
+            // 지금으로 부터 하루 후
+            let date = new Date(Date.now()+ (24*60*60*1000));
+            date = date.toUTCString();
+            document.cookie = "test=tomorrow; expires="+date;
+
+        });
+
+        document.getElementById('test6').addEventListener('click',function(){
+            // 만료 기간을 5초로 설정하여 쿠키를 저장 후 바로 삭제
+            document.cookie = "test=5sec; max-age=5";
+        });
+        
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <style>
+        .image { position: relative;}
+        .box {
+            border : 1px solid black;
+            width: 50px;
+            height: 50px;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <h1>animate 메소드</h1>
+    <pre>
+    animate(properties, [duration], [easing], [callback])
+    properties : 변경할 CSS 속성을 객체로 전달
+    duration : 기본 값은 400, ms | slow | fast
+    easing : 속도 옵션, swing | linear
+    callback : 애니메이션이 완료 되었을 때 호출 될 콜백 함수
+    </pre>
+
+    <h3>이미지 animate</h3>
+    <img src="resources/images/피카츄.gif" width="150px" height="100px" class="image" id="pika">
+    <script>
+        $("#pika").click(function(){
+            $(this).animate({left:'-150px'},'slow');
+        })
+    </script>
+
+    <h3>상대적 애니메이션</h3>
+    <button id="btn">실행확인</button>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <script>
+        $('#btn').click(function(){
+            $(".box").each(function(index){
+                $(this).css("background","rgb(255,200,"+(index*40)+")");
+                $(this).delay(index*50).animate({left:'200px'},'slow');
+            });
+        })
+    </script>
+
+</body>
+</html>

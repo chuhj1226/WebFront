@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3_jQuery 선택자2</title>
+    <script src="js/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>입력 양식 필터 선택자</h1>
+    <p>input 태그의 type 속성에 따라 문서 객체 선택 가능</p>
+    텍스트 상자 : <input type="text"><br>
+    버튼 : <input type="button"><br>
+    체크박스 : <input type="checkbox"><br>
+    이미지 : <input type="image" src="resources/images/flower1.PNG"><br>
+    파일 : <input type="file"><br>
+    패스워드 : <input type="password"><br>
+    라디오 버튼 : <input type="radio"><br>
+    리셋 버튼 : <input type="reset"><br>
+    submit 버튼 : <input type="submit"><br>
+
+    <script>
+        $(document).ready(function(){
+            $("input:text").css("background","red");
+            $("input:button").attr("value","왕버튼").css({width:"200px",height:"200px"});
+            $("input:checkbox").attr("checked",true).css({width:"100px",height:"100px"});
+            // mouseenter : 마우스가 요소 경게 내부로 들어왔을 때 동작할 이벤트 메소드
+            $("input:image").mouseenter(function(){
+                $(this).attr("src","resources/images/river1.png");
+            });
+            // mouseleave : 마우스가 요소 경게 외부로 나갔을 때 동작할 이벤트 메소드
+            $("input:image").mouseleave(function(){
+                $(this).attr("src","resources/images/flower1.PNG");
+            });
+            // file -> 배경색 변경
+            // password -> 너비, 높이 변경
+            // radio -> 체크하기
+            // reset -> 배경색, 색상 변경
+            // submit -> 배경색, 색상 변경
+            $("input:file").css("background","red");
+            $("input:password").css({width:"100px",height:"50px"});
+            $("input:radio").attr("checked",true);
+            $("input:reset").css({background:"red",color:"violet"});
+            $("input:submit").css({background:"red",color:"violet"})
+
+
+        });
+
+    </script>
+
+</body>
+</html>
