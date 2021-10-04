@@ -8,8 +8,8 @@
     <script src="js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <!-- 1번 문제 -->
-    <ul id="number">
+    <!-- practice -->
+    <!-- <ul id="number">
         <li class="n1">1</li>
         <li class="n2">2</li>
         <li class="n3">3</li>
@@ -24,10 +24,10 @@
                 });
             });
         });
-    </script>
+    </script> -->
 
-    <!-- 2번문제 -->
-    <select name="number">
+    <!-- 1번 문제 -->
+    <!-- <select name="number">
         <option value="">== 선택 ==</option>
         <option value="1">1번</option>
         <option value="2">2번</option>
@@ -37,13 +37,17 @@
     <span id="selNum"></span>
 
     <script>
-        $(document).ready(function(){
-            
-        });
-    </script>
+        $('select').on('change',function(){
 
-    <!-- 3번 문제 -->
-    <!-- <table border="1">
+            $('#selNum').text($('option:selected').text());
+        })
+
+        
+
+    </script> -->
+
+    <!-- 2번 문제 -->
+    <table border="1">
         <tr>
             <th>번호</th>
             <th>제목</th>
@@ -73,19 +77,34 @@
     <span id="s1"></span> / <span id="s2"></span>
     / <span id="s3"></span> / <span id="s4"></span>
 
+    <!-- <script>
+        $(document).ready(function() {
+
+            $('table tr td').click(function(){
+                $('#s1').text($(this).parent().children('td:eq(0)').text());
+                $('#s2').text($(this).parent().children('td:eq(1)').text());
+                $('#s3').text($(this).parent().children('td:eq(2)').text());
+                $('#s4').text($(this).parent().children('td:eq(3)').text());
+            });
+        });
+    </script> -->
+
+    <!-- 3번 문제 -->
+
     <script>
         $(document).ready(function() {
             
-        });
-    </script> -->
-
-    <!-- 4번 문제 -->
-
-    <!-- <script>
-        $(document).ready(function() {
+            $('table tr td').click(function(){
+                $('#s1').text($(this).parent().children('td:eq(0)').text());
+                $('#s2').text($(this).parent().children('td:eq(1)').text());
+                $('#s3').text($(this).parent().children('td:eq(2)').text());
+                $('#s4').text($(this).parent().children('td:eq(3)').text());
+          
+                $(this).parent().children('td').css("backgroundColor","red")
+            });
           
         });
-    </script> -->
+    </script>
 
     
 </body>

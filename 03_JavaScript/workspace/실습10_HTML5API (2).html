@@ -68,60 +68,32 @@
         <div id="preview3" class="preview"></div>
     </div>
 
+
     <div class="files">
         <input type="file" id="imgfile1" name="imgfile1" class="imgUpload">
         <input type="file" id="imgfile2" name="imgfile2" class="imgUpload">
         <input type="file" id="imgfile3" name="imgfile3" class="imgUpload">
     </div>
     <script>
-
-        let preview = document.querySelectorAll('.preview');
-        let img = document.querySelectorAll('.imgUpload');
-
-        for(let i = 0 ; i < preview.length ; i++) {
-            preview[i].addEventListener('click',function(){
-                img[i].click();
+        let previews = document.querySelectorAll(".preview");
+        let files = document.querySelectorAll(".imgUpload");
+        
+        for(let i = 0; i < previews.length; i++){
+            previews[i].addEventListener('click', () => {
+                files[i].click();                
             });
-            
-            
-            img[i].addEventListener('change',function(){
-                
-                
-                    let reader = new FileReader();
-    
-                    reader.onload = function(){
-                        console.log(reader.result);
-                        preview[i].innerHTML = '<img src="'+reader.result+'">';
-                    }
-                    reader.readAsDataURL(img[i].files[0]);
-                
-    
-            })   
-            
-        
-        
+
+            files[i].addEventListener('change', () => {
+                let reader = new FileReader();
+               reader.onload = function(){                 
+                previews[i].innerHTML = '<img src="'+ reader.result +'" />';
+               };
+
+               reader.readAsDataURL(files[i].files[0]);
+            });
         }
 
-
-
-
-            // document.getElementById('imgfile1').addEventListener('change',function(){
-                
-                //     if(this.files && this.files[0]){
-                    
-                    //         let reader = new FileReader();
-                    
-                    //         reader.onload = function(){
-                   
-                        //             document.getElementById('preview1').innerHTML = '<img src="'+reader.result+'">';
-                        //         };
-                        //         reader.readAsDataURL(this.files[0]);
-                        //     }
-                        // });
-                        
-        
     </script>
-
 
     <h3>문제 2</h3>
     <p>
@@ -150,10 +122,35 @@
         <img id='item10' class='items' src='../workspace/resources/images/043.png'>
     </div>
     <script>
-        let blue = document.getElementById('blue');
-        let yellow = document.getElementById('yellow');
+        let list = document.querySelectorAll('.lists');
+        let item;
+        let isDraggingOver;
 
+        for(let i = 0; i < list.length; i++){
+            list[i].ondragstart = function(){
+                item = document.getElementById(event.target.id);
+            };
 
+            list[i].ondragenter = function(){
+                isDraggingOver = false;
+            };
+
+            list[i].ondragover = function(){
+                event.preventDefault();               
+            };
+
+            list[i].ondrop = function(){
+                let target = event.target;                
+
+                if(target.tagName == 'DIV'){
+                    target.querySelector('.items:last-child').after(item);
+                }else if(target.tagName == 'IMG'){
+                    target.after(item);
+                }
+                
+            }
+        }
+        
 
     </script>
 </body>
