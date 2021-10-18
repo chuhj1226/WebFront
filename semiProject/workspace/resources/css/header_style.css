@@ -142,7 +142,7 @@ li > a {
 footer {
     display: flex;
     background: rgb(250, 248, 248);
-    color: #575756;
+    color: rgb(66, 66, 66);
 }
 
 footer p{
@@ -160,7 +160,7 @@ footer p{
 }
 .footer_content {
     position: relative;
-    right: 100px
+    right: 50px
     
 }
 
