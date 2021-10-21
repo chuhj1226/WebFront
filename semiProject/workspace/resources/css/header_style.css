@@ -1,5 +1,7 @@
 @charset "UTF-8";  
 
+
+
 *{margin: 0; padding: 0;}
 
 html {
@@ -14,6 +16,8 @@ body {
 } 
 
 
+
+
 img {
     max-width: 100%;
 }
@@ -23,13 +27,17 @@ img {
     margin-top:42px;
 }
 
-li > a {
-    color:#000;
-    text-decoration: none;
+.main-nav > li > a {
     font-family: 'Gothic A1', sans-serif;
-    font-weight: bolder;
     /* font-family: 'Nanum Gothic', sans-serif; */
     /* font-family: 'Gowun Batang', serif; */
+    font-weight: bolder;
+    
+    
+}
+li > a {
+    text-decoration: none;
+    color:#000;
     
     
 }
