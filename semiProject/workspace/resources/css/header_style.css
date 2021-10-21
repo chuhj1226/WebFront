@@ -37,6 +37,7 @@ li > a {
 /* -----------------------------------------------------------------------------------------------  */
 
 .container{
+    min-width: 1280px;
     width: 1280px;
     margin: 0 auto;
 }
@@ -221,76 +222,3 @@ footer p{
     margin-top: 5px;
 }
 
-/* ----------------------중앙------------------------------------------------------- */
-
-.home-content {
-    display: inline-block;
-    margin-top: 50px;
-    text-align: center;
-    
-    font-family: 'Nanum Gothic', sans-serif;
-}
-
-.mypage_nav > li {
-    display: inline;
-    font-weight: 700;
-    font-size: 20px;
-}
-
-.mypage_nav > li:not(:first-child) {
-    margin-left: 40px;
-}
-
-.mypage_nav > li:first-child >a {
-    border-radius: 10px;
-    background-color: rgb(135, 211, 124);
-    padding : 5px 0;
-    padding-left: 5px;
-}
-
-.profile {
-    display: inline-block;
-
-    margin-top: 40px;
-    border-radius: 50px;
-    width: 350px;
-    height: 610px;
-    background-color: rgb(245, 245, 245);
-    margin-bottom: 100px;
-}
-
-.profile > img {
-    margin-top: 20px;
-}
-
-.profile > h1 {
-    position: relative;
-    bottom:  20px;
-    color: #432;
-}
-
-.setting{
-    padding: 10px 50px;
-    border-style:  none;
-    background-color: #575756;
-    border-radius: 10px;
-    color: white;
-    font-size: 20px;
-    cursor: pointer;
-}
-a {
-    text-decoration: none;
-}
-.icon >a > img {
-    width: 35px;
-    
-    margin: 0 40px;
-    margin-top: 40px;
-}
-
-.count > h2 {
-
-    display: inline-block;
-    margin: 0 43px;
-    color : #432;
-}
