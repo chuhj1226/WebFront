@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -36,15 +37,75 @@
     margin-left: 40px;
 }
 
-.mypage_nav > li:first-child >a {
+.mypage_nav > li:nth-child(2) >a {
     border-radius: 10px;
     background-color: rgb(135, 211, 124);
     padding : 5px 0;
     padding-left: 5px;
 }
+.my_vproduct h1{
+    
+    margin-top: 30px;
+    font-family: 'Nanum Gothic', sans-serif;
+}
 
+.board_box {
+    width: 220px;
+    margin-top: 35px;
+    height: 290px;
+    border: 1px solid rgb(230,230,230);
+    font-family: 'Nanum Gothic', sans-serif;
+    
+}
+.product_name {
+    margin-left: 10px;
+}
+.product_img {
+    width: 220px;
+    height: 210px;
+}
 
+.product_info {
+    display: flex;
+    margin-left: 10px;
+}
 
+.post_date {
+    margin-left: 50px;
+    color: gray;
+}
+
+li {
+    list-style: none;
+}
+
+.board_list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.board_box:not(:nth-child(5n)){
+    margin-right: 42px;
+}
+
+.page_button {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 50px;
+}
+.page_button > button {
+    border-style: none;
+    margin: 10px;
+    padding: 10px 10px;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    color: #432;
+}
+
+.page_button > button:nth-child(2){
+    background-color: rgb(135, 211, 124);
+}
 </style>
 </head>
 <body>
@@ -113,17 +174,143 @@
                 </li>
             </ul>
         </nav>
-
-        
     </div>
-
-    <div class="container">
+    <div class="my_product container">
         <h1>찜한 상품</h1>
-    </div>
-    
 
-    <footer>
-        <div class="container">
+        <div class="board_list">
+ 
+
+            <!-- 나중에 이렇게 반복문으로 바꿔야함
+            <c:forEach var="product" items="${ productList }">
+                <ul class="product_ul" onclick="detailView(${product.pno})">
+                    <li class="no">${ product.nno }</li>
+                    <li class="title">${ product.ntitle }</li>
+                    <div class="product_info">
+                        <li class="price">${ product.price }</li>
+                        <li class="date">${ product.ndate }</li>
+                    </div>
+                </ul>
+             </c:forEach> -->
+
+
+            <div class="board_box">
+                <img class="product_img">
+                <p class="product_name">상품명 들어가는 곳</p>
+                <div class="product_info">
+                    
+                    <h4 class="product_price">1,500,000원</h4>
+                    <p class="post_date">5시간 전</p>
+                </div>
+            </div>
+
+            
+            <div class="board_box">
+                <img class="product_img">
+                <p class="product_name">상품명 들어가는 곳</p>
+                <div class="product_info">
+                    
+                    <h4 class="product_price">1,500,000원</h4>
+                    <p class="post_date">5시간 전</p>
+                </div>
+            </div>
+
+            
+            <div class="board_box">
+                <img class="product_img">
+                <p class="product_name">상품명 들어가는 곳</p>
+                <div class="product_info">
+                    
+                    <h4 class="product_price">1,500,000원</h4>
+                    <p class="post_date">5시간 전</p>
+                </div>
+            </div>
+
+            
+            <div class="board_box">
+                <img class="product_img">
+                <p class="product_name">상품명 들어가는 곳</p>
+                <div class="product_info">
+                    
+                    <h4 class="product_price">1,500,000원</h4>
+                    <p class="post_date">5시간 전</p>
+                </div>
+            </div>
+
+            
+            <div class="board_box">
+                <img class="product_img">
+                <p class="product_name">상품명 들어가는 곳</p>
+                <div class="product_info">
+                    
+                    <h4 class="product_price">1,500,000원</h4>
+                    <p class="post_date">5시간 전</p>
+                </div>
+            </div>
+
+            <div class="board_box">
+                <img class="product_img">
+                <p class="product_name">상품명 들어가는 곳</p>
+                <div class="product_info">
+                    
+                    <h4 class="product_price">1,500,000원</h4>
+                    <p class="post_date">5시간 전</p>
+                </div>
+            </div>
+            <div class="board_box">
+                <img class="product_img">
+                <p class="product_name">상품명 들어가는 곳</p>
+                <div class="product_info">
+                    
+                    <h4 class="product_price">1,500,000원</h4>
+                    <p class="post_date">5시간 전</p>
+                </div>
+            </div>
+
+            <div class="board_box">
+                <img class="product_img">
+                <p class="product_name">상품명 들어가는 곳</p>
+                <div class="product_info">
+                    
+                    <h4 class="product_price">1,500,000원</h4>
+                    <p class="post_date">5시간 전</p>
+                </div>
+            </div>
+            <div class="board_box">
+                <img class="product_img">
+                <p class="product_name">상품명 들어가는 곳</p>
+                <div class="product_info">
+                    
+                    <h4 class="product_price">1,500,000원</h4>
+                    <p class="post_date">5시간 전</p>
+                </div>
+            </div>
+            <div class="board_box">
+                <img class="product_img">
+                <p class="product_name">상품명 들어가는 곳</p>
+                <div class="product_info">
+                    
+                    <h4 class="product_price">1,500,000원</h4>
+                    <p class="post_date">5시간 전</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 반복문으로 나중에 바꿀것 -->
+        <div class="page_button">
+            <button>&lt;</button>
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>&gt;</button>
+        </div>
+
+
+    </div>
+        
+        
+        <footer>
+            <div class="container">
         <img class="footer_logo" src="resources/image/footerLogo.png"/>
         <div class="footer_content wrapper">
             <h6 class="team">
