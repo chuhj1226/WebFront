@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>mypage</title>
-    <link rel="stylesheet" href="resources/css/style.css">
+    <link rel="stylesheet" href="resources/css/header_style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
@@ -15,7 +15,37 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap" rel="stylesheet">
+<style>
 
+    
+.home-content {
+    display: inline-block;
+    margin-top: 50px;
+    text-align: center;
+    
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+.mypage_nav > li {
+    display: inline;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.mypage_nav > li:not(:first-child) {
+    margin-left: 40px;
+}
+
+.mypage_nav > li:first-child >a {
+    border-radius: 10px;
+    background-color: rgb(135, 211, 124);
+    padding : 5px 0;
+    padding-left: 5px;
+}
+
+
+
+</style>
 </head>
 <body>
 
@@ -62,12 +92,12 @@
         <nav>
             <ul class="mypage_nav">
                 <li>
-                    <a href="#">
+                    <a href="../workspace/mypage_main.html">
                         프로필
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="../workspace/mypage_like.html">
                         찜한상품
                     </a>
                 </li>
@@ -83,12 +113,14 @@
                 </li>
             </ul>
         </nav>
-        <div class="favorit wrapper">
-            <h1>찜한 상품</h1>
- 
-        </div>
+
+        
     </div>
 
+    <div class="container">
+        <h1>찜한 상품</h1>
+    </div>
+    
 
     <footer>
         <div class="container">
