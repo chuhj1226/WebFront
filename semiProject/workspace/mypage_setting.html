@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mypage</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="resources/css/header_style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@200&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap" rel="stylesheet">
+    <style>
+        .home-content {
+            display: inline-block;
+            margin-top: 50px;
+            text-align: center;
+
+            font-family: 'Nanum Gothic', sans-serif;
+        }
+
+        .mypage_nav>li {
+            display: inline;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .mypage_nav>li:not(:first-child) {
+            margin-left: 40px;
+        }
+
+        .mypage_nav>li:nth-child(4)>a {
+            border-radius: 10px;
+            background-color: rgb(135, 211, 124);
+            padding: 5px 5px;
+        }
+
+        .profile {
+
+            display: inline-block;
+            margin-top: 40px;
+            border-radius: 20px;
+            width: 550px;
+            height: 700px;
+            background-color: rgb(245, 245, 245);
+            margin-bottom: 100px;
+
+
+
+        }
+
+        .profile>h2 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .img_box {
+            display: inline-block;
+            width: 250px;
+            height: 250px;
+            background-color: white;
+            border-radius: 20px;
+            margin-bottom: 35px;
+
+        }
+
+        .img_box>h2 {
+            position: relative;
+            bottom: 35px;
+        }
+
+        .table {
+            margin-left: 100px;
+        }
+
+        .basic {
+            border: 1px lightgray solid;
+            border-radius: 5px;
+            height: 30px;
+            margin-bottom: 10px;
+            width: 200px;
+
+        }
+
+        input:not(.search__input):first-child {
+            margin-left: 30px;
+        }
+
+        .phone {
+            border: 1px lightgray solid;
+            border-radius: 5px;
+            height: 30px;
+            margin-bottom: 10px;
+
+            margin-left: 7px;
+            width: 60px;
+        }
+
+        .email {
+            border: 1px lightgray solid;
+            border-radius: 5px;
+            height: 30px;
+            margin-bottom: 10px;
+
+
+            width: 92px;
+        }
+
+        #user_id {
+            background-color: rgb(245, 245, 245);
+            cursor: auto;
+        }
+
+
+        #user_id:focus {
+            outline: none;
+
+        }
+
+        .submit {
+            margin-top: 10px;
+            position: relative;
+            right: 30px;
+            background-color: rgb(135, 211, 124);
+            border: none;
+            font-size: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            padding: 10px 70px;
+            color: #fff;
+
+            font-family: 'Gowun Batang', serif;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="home" class="big-bg">
+        <!-- 2. header 만들기 -->
+        <header class="page-header wrapper">
+            <div class="container">
+                <a href="main.html">
+                    <img class="logo" src="resources/image/Logo.png" alt="HOME">
+                </a>
+                <nav>
+                    <ul class="main-nav">
+                        <li>
+                            <input class="search__input" type="text" placeholder="Search">
+                        </li>
+                        <li><a href="#">
+                                최근 게시물
+                            </a></li>
+                        <li><a href="#">
+                                자취는 꿀팁
+                            </a></li>
+                        <li><a href="#">
+                                자취는 꿀템
+                            </a></li>
+                        <li><a href="#">
+                                자취는 꿀친
+                            </a></li>
+                        <li><a href="#">
+                                쪽지
+                            </a></li>
+                        <li>
+                            <button class="login" value="로그인">로그인</button>
+
+                        </li>
+
+                    </ul>
+                </nav>
+            </div>
+        </header>
+    </div>
+
+
+    <div class="home-content wrapper">
+        <nav>
+            <ul class="mypage_nav">
+                <li>
+                    <a href="../workspace/mypage_main.html">
+                        프로필
+                    </a>
+                </li>
+                <li>
+                    <a href="../workspace/mypage_like.html">
+                        찜한상품
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        스크랩
+                    </a>
+                </li>
+                <li>
+                    <a href="../workspace/mypage_setting.html">
+                        설정
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="profile">
+            <h2>회원 설정 변경</h2>
+
+            <div class="img_box">
+                <img src="../workspace/resources/image/profile.png">
+
+            </div>
+            <div class="table">
+
+                <table>
+                    <tr>
+                        <th>아이디</th>
+                        <td><input class="basic" id="user_id" name="user_id" type="text" placeholder=" byelim" readonly>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>닉네임</th>
+                        <td><input class="basic" name="user_nickname" onfocus="this.placeholder=''" type="text"
+                                placeholder=" 우별림"></td>
+                    </tr>
+                    <tr>
+                        <th>이름</th>
+                        <td><input class="basic" name="user_name" onfocus="this.placeholder=''" type="text"
+                                placeholder=" 우별림"></td>
+                    </tr>
+                    <tr>
+                        <th>휴대전화</th>
+                        <td><input class="phone" name="user_phone" onfocus="this.placeholder=''" type="text"
+                                placeholder=" 010"><input class="phone" type="text" placeholder="1234"
+                                onfocus="this.placeholder=''"><input class="phone" type="text" placeholder="5678"
+                                onfocus="this.placeholder=''"></td>
+
+                    </tr>
+                    <tr>
+                        <th>이메일</th>
+                        <td><input class="email" name="user_email" type="text" placeholder=" byelim123"
+                                onfocus="this.placeholder=''">@<select class="email" id="selbox" name="user_email">
+                                <option value="naver.com">
+                                    naver.com
+                                </option>
+                                <option value="daum.net">
+                                    daum.net
+                                </option>
+                                <option value="gmail.com">
+                                    gmail.com
+                                </option>
+                                <option value="direct">직접입력</option>
+                            </select><input type="text" class="email" id="selboxDirect" name="selboxDirect"
+                                placeholder="직접입력" onfocus="this.placeholder=''" />
+
+                        </td>
+                    </tr>
+                </table>
+                <input class="submit" type="submit" value="수정하기">
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <script>
+        $(function () {
+            $("#selboxDirect").hide();
+
+            $("#selbox").change(function () {
+
+                if ($("#selbox").val() == "direct") {
+
+                    $("#selboxDirect").show();
+                    $("#selbox").hide();
+
+                } else {
+
+                    $("#selboxDirect").hide();
+
+                }
+            })
+        });
+    </script>
+
+
+
+    <footer>
+        <div class="container">
+            <img class="footer_logo" src="resources/image/footerLogo.png" />
+            <div class="footer_content wrapper">
+                <h6 class="team">
+                    자취는 팀빨㈜
+                </h6>
+                <p class="text">
+                    대표이사 | 김이박 <br>
+                    email : email123@daum.net <br>
+                    <a href="#">제휴/광고 문의</a> | 이용약관<br>
+                    서울시 송파구 송파대로 123-1
+                </p>
+                <h1 class="number">1588-8282</h1>
+            </div>
+            <ul class="footer_list">
+                <li>
+                    <a href="#">
+                        <img src="resources/image/twitter.svg">
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="resources/image/facebook.svg">
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="resources/image/instagram.svg">
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+</body>
+
+</html>

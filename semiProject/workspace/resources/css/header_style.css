@@ -28,9 +28,9 @@ img {
 }
 
 .main-nav > li > a {
-    font-family: 'Gothic A1', sans-serif;
+    /* font-family: 'Gothic A1', sans-serif; */
     /* font-family: 'Nanum Gothic', sans-serif; */
-    /* font-family: 'Gowun Batang', serif; */
+    font-family: 'Gowun Batang', serif;
     font-weight: bolder;
     
     
