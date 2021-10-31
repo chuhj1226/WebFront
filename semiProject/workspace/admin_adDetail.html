@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mypage</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="resources/css/header_style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@200&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap" rel="stylesheet">
+    <style>
+        .home-content {
+            display: inline-block;
+            margin-top: 70px;
+            text-align: center;
+
+            font-family: 'Nanum Gothic', sans-serif;
+        }
+
+        .admin_nav>li {
+            display: inline;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .admin_nav>li:not(:first-child) {
+            margin-left: 100px;
+        }
+
+        .admin_nav>li:nth-child(2) {
+            border-bottom: 3px solid rgb(135, 211, 124);
+            padding-bottom: 3px;
+        }
+
+
+        .wrap {
+            width: 1000px;
+            margin: 50px auto;
+        }
+
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+        }
+
+
+
+    </style>
+</head>
+
+
+<div id="home" class="big-bg">
+    <!-- 2. header 만들기 -->
+    <header class="page-header wrapper">
+        <div class="container">
+            <a href="main.html">
+                <img class="logo" src="resources/image/Logo.png" alt="HOME">
+            </a>
+            <nav>
+                <ul class="main-nav">
+                    <li>
+                        <input class="search__input" type="text" placeholder="Search">
+                    </li>
+                    <li><a href="#">
+                            최근 게시물
+                        </a></li>
+                    <li><a href="#">
+                            자취는 꿀팁
+                        </a></li>
+                    <li><a href="#">
+                            자취는 꿀템
+                        </a></li>
+                    <li><a href="#">
+                            자취는 꿀친
+                        </a></li>
+                    <li><a href="#">
+                            쪽지
+                        </a></li>
+                    <li>
+                        <button class="login" value="로그인">로그인</button>
+
+                    </li>
+
+                </ul>
+            </nav>
+        </div>
+    </header>
+</div>
+
+
+<div class="home-content wrapper">
+    <nav>
+        <ul class="admin_nav">
+            <li>
+                <a href="../workspace/admin_report.html">
+                    신고내역
+                </a>
+            </li>
+            <li>
+                <a href="../workspace/admin_ad.html">
+                    광고/제휴 문의
+                </a>
+            </li>
+            <li>
+                <a href="../workspace/admin_search.html">
+                    회원정보조회
+                </a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+   
+
+</div>
+
+
+<footer>
+    <div class="container">
+        <img class="footer_logo" src="resources/image/footerLogo.png" />
+        <div class="footer_content wrapper">
+            <h6 class="team">
+                자취는 팀빨㈜
+            </h6>
+            <p class="text">
+                대표이사 | 김이박 <br>
+                email : email123@daum.net <br>
+                <a href="#">제휴/광고 문의</a> | 이용약관<br>
+                서울시 송파구 송파대로 123-1
+            </p>
+            <h1 class="number">1588-8282</h1>
+        </div>
+        <ul class="footer_list">
+            <li>
+                <a href="#">
+                    <img src="resources/image/twitter.svg">
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="resources/image/facebook.svg">
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="resources/image/instagram.svg">
+                </a>
+            </li>
+        </ul>
+    </div>
+</footer>
+</body>
+
+</html>

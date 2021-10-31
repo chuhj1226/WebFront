@@ -139,6 +139,23 @@
 
             font-family: 'Gowun Batang', serif;
         }
+
+        .profile_header{
+            display: flex;
+        }
+        
+        .profile_header h2{
+            margin: 20px auto;
+            margin-left: 200px;
+        }
+
+        .quit {
+            /* position: relative; */
+            position: absolute;
+            margin-top: 3px;
+            margin-left: 475px;
+            color: gray;
+        }
     </style>
 </head>
 
@@ -197,7 +214,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="../workspace/mypage_scrap.html">
                         스크랩
                     </a>
                 </li>
@@ -209,7 +226,10 @@
             </ul>
         </nav>
         <div class="profile">
-            <h2>회원 설정 변경</h2>
+            <div class="profile_header">
+                <h2>회원 설정 변경</h2>
+                <a href="#" class="quit">탈퇴하기</a>
+            </div>
 
             <div class="img_box">
                 <img src="../workspace/resources/image/profile.png">
