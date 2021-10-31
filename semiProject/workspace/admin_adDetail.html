@@ -43,19 +43,74 @@
         }
 
 
-        .wrap {
-            width: 1000px;
-            margin: 50px auto;
-        }
-
+        
         ul,
         li {
             margin: 0;
             padding: 0;
         }
+        .wrap {
+            
+            margin-top: 50px;
+            margin-bottom: 150px;
+         
+        }
+        .box {
+            border-top: 3px solid lightgray;
+            border-bottom: 3px solid lightgray;
+            padding-top: 25px;
+            padding-bottom: 14px;
+            width: 700px;
+            margin: auto;
+        }
+
+         .box_header {
+            display: flex;
+            margin-bottom: 10px;
+            justify-content: center;
+            
+        }
+        .box_header > h2 {
+           position: absolute;
+        }
+
+        .back {
+            margin-right: 650px;
+        }
+     
+
+        
+        
+        .box p, pre, .title{
+            text-align: left;
+            margin-left: 20px;
+            
+        }
 
 
+        .content{
+            margin-top: 20px;
+            min-height: 200px;
+            font-size: 14px;
+            font-family: 'Nanum Gothic', sans-serif;
+        }
 
+        .writer {
+            display: flex;
+        }
+        .back {
+            left: 100px;
+            border: none;
+            font-size: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            padding: 10px;
+            color: #000;
+            /* font-family: 'Gothic A1', sans-serif; */
+            font-family: 'Nanum Gothic', sans-serif;
+            /* font-family: 'Gowun Batang', serif; */
+        }
+      
     </style>
 </head>
 
@@ -119,11 +174,29 @@
             </li>
 
         </ul>
-
     </nav>
-
-   
-
+        <div class="wrap">
+            <div class="box_header">
+                <button class="back">목록</button>
+                <h2 class="detail_list">광고/배너 문의</h2>
+            </div>
+            <div class="box">
+            <h2 class="title">쿠팡 파트너스 PPL 관련 문의드립니다.</h2>
+            <div class="writer">
+                <p>김이박</p>
+                <p>2021-09-29 12:59</p>
+            </div>
+                <pre class="content">안녕하세요. 쿠팡 파트너스 마케팅 팀장 김이박입니다.
+메인화면 상단 광고 기재 건으로 문의 남깁니다.
+자세한 사항은 coupangman@daum.net으로 연락 바랍니다.</pre>
+                    <p>회사(기관)명 : 쿠팡</p>
+                    <p>연락처 : 010-1234-1234</p>
+        </div>
+    </div>
+        
+  
+    
+    
 </div>
 
 
